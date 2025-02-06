@@ -1,0 +1,2 @@
+Esta es una prueba de creacioón de un 
+archivo de texto desde VsCode

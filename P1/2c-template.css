@@ -207,21 +207,14 @@ h2{
 /* posicionamiento de imágenes https://www.w3schools.com/css/css_positioning.asp */
 
 #imghtml {
-  height: 360px;
+  height: 145px;
   width: 100%;
-  border-radius: 50%;
-  margin: 14px;
-  box-shadow: 5px 5px 
 }
 
 img {
     width: 100%;
     border-radius: 10%;
-    margin:14px;
-    border:solid;
-    border-color: black;
-    height: auto;
-    box-shadow: rgb(150, 149, 231)
+    height: 145px;
 }
 
 .iresponsive {

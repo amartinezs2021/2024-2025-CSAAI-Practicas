@@ -191,13 +191,13 @@ h2{
   }
   
   .url {
-    font-family: 'BankGothicBold';
+    font-family: 'WarrenNarrow';
     color: rgb(88, 86, 182);
-    font-size:large; 
+    font-size:medium; 
     padding: 10px;
-    background-color: rgba(236, 225, 225, 0.699);
+    background-color: rgba(138, 132, 132, 0.699);
     margin: 15px;
-    font-weight: 100;
+    font-weight: 50;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.466) 5px 5px 40px;
     border: black;

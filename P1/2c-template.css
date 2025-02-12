@@ -10,6 +10,7 @@
 float: left;
 padding: 10px;
 min-height: 500px;
+max-heigth: auto;
 }
 
 .izquierda {
@@ -17,7 +18,15 @@ width: 25%;
 }
 
 .derecha {
-width: 75%;
+width: 70%;
+}
+
+.izq{
+  width: 45%;
+}
+
+.drcch{
+width:: 50%;
 }
 
 /* Clear floats despues de las columnas para eliminar la superposición */
@@ -26,11 +35,18 @@ content: "";
 display: table;
 clear: both;
 }
-
+/*Columna Izquierda index.html*/
 #c1 {
-    background-color:#aaa;
+    heigth: 100%;
+    margin: 10px;
+    border:: solid;
+    border-color: rgb(148, 77, 3);
+    border-radius: 10px;
+    box-shadow: rgb(148, 83, 9);
+    font-weigth:300;
 }
 
+/*columna derecha index.html*/
 #c2 {
     background-color:#bbb;
 }

@@ -48,9 +48,120 @@ clear: both;
 
 /*columna derecha index.html*/
 #c2 {
-    background-color:#bbb;
+    height: 100%;
+    margin: 10px;
+    padding: 25px;
 }
 
+/*Columna izquierda about.html*/
+#c3{
+  height: 100%;
+  margin: 10px;
+  padding: 25px;
+  border-radius: 10px; 
+}
+
+/*Columna derecha about.html*/
+#c4{
+  height: 100%;
+  margin: 10px;
+  padding: 30px;
+}
+
+/*Cuerpo index.html*/
+body{
+  background-image: url('añejo.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/*Cuerpo about.html*/
+.about{
+  background-image: url('fondo2.webp');
+  background-attachment:fixed;
+}
+
+/*Tipo de fuente*/
+@font-face{
+  font-family: 'WarrenNarrow';
+  scr: url('Warren\ Narrow.ttf') format('truetype');
+}
+/*Titulps columna izquierda index.html*/
+.Tizq {
+  clear:both;
+  margin: auto;
+  font-family:'WarrenNarrow';
+  padding: 10px;
+  border: solid;
+  border-color: rgb(10, 10, 10);
+  border-radius: 5px;
+  text-align: center;
+  background-color: rgb(112, 110, 110);
+  box-shadow: 5px 5px 40px;
+}
+
+
+h1{
+  color:rgb(27, 24, 24);
+  font-family: 'WarrenNarrow';
+  font-size: xx-large;
+  border: solid;
+  border-radius: 5px;
+  text-align: center;
+  /*background-color: rgba(17, 15, 15, 0.842);*/
+  padding: 10px;
+  box-shadow: rgb(148, 169, 194) 5px 5px 40px;
+  text-shadow: 4px 4px 5px rgba(109, 10, 10, 0.493);
+}
+
+h2{
+  font-family: 'WarrenNarrow';
+  border: solid;
+  border-radius: 5px;
+  text-align: center;
+  background-color: rgba(245, 245, 245, 0.6);
+  padding: 10px;
+  margin: 10px;
+  box-shadow: black 5px 5px 10px;
+  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.85);
+}
+/* Info columna izquierda index.html*/
+.info1{
+  color: whitesmoke;
+  border:  black solid;
+  border-radius: 5px;
+  text-align:start;
+  background-color: rgba(29, 27, 27, 0.815);
+  padding: 18px;
+  margin: 10px;
+  box-shadow: black 5px 5px 10px;
+}
+
+/* Info columna derecha index.html */
+.info2{
+  border: solid;
+  border-radius: 5px;
+  text-align:start;
+  background-color: rgba(148, 169, 194);
+  padding: 18px;
+  margin: 10px;
+  box-shadow: black 5px 5px 10px;
+  font-weight: 500;
+
+
+#TituloPersonajes{
+  margin:10px;
+  font-family:'WarrenNarrow';
+  font-size:xx-large;
+  background-color:rgba(67, 132, 206, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+  border: solid;
+  text-align: center;
+  padding: 10px;
+  box-shadow: rgb(110, 106, 134) 5px 5px 40px;
+  text-shadow: 4px 4px 5px rgba(245, 245, 245, 0.6);
+}
 /* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
 /* posicionamiento de imágenes https://www.w3schools.com/css/css_positioning.asp */
 
@@ -68,7 +179,7 @@ img {
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
 /* Así conseguimos que el contenido se vea bien en dispositvos móviles */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .columna {
       width: 100%;
     }

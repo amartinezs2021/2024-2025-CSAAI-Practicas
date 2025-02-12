@@ -26,7 +26,7 @@ width: 70%;
 }
 
 .drcch{
-width:: 50%;
+width: 50%;
 }
 
 /* Clear floats despues de las columnas para eliminar la superposición */
@@ -39,7 +39,7 @@ clear: both;
 #c1 {
     heigth: 100%;
     margin: 10px;
-    border:: solid;
+    border: solid;
     border-color: rgb(148, 77, 3);
     border-radius: 10px;
     box-shadow: rgb(148, 83, 9);

@@ -202,6 +202,12 @@ h2{
     box-shadow: rgba(0, 0, 0, 0.466) 5px 5px 40px;
     border: black;
     float:left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
   }
 /* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
 /* posicionamiento de imágenes https://www.w3schools.com/css/css_positioning.asp */

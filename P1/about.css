@@ -10,7 +10,7 @@ img{
 
 
 body  {
-  background-image: url('fondo2.webp');
+  background-image: url('PruebaFondo.jpg');
   background-size: cover; 
   text-align: center;
 }
@@ -39,12 +39,12 @@ th {
   border: rgb(0, 0, 0) 2px dashed;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  color: #fff;
+  color: #8d6767;
   text-shadow:
-    1px 1px 2px #000,
-    -1px 1px 2px #000,
-    -1px -1px 0 #000,
-    1px -1px 0 #000;
+    1px 1px 2px #721a1a,
+    -1px 1px 2px #721a1a,
+    -1px -1px 0 #721a1a,
+    1px -1px 0 #721a1a;
     font-size: 150%;
 }
 #nombre{
@@ -58,22 +58,22 @@ th {
 
 li{
   text-align: left;
-  color: #fff;
+  color: #8d6767;
   text-shadow:
-    1px 1px 2px #000,
-    -1px 1px 2px #000,
-    -1px -1px 0 #000,
-    1px -1px 0 #000;
+    1px 1px 2px #721a1a,
+    -1px 1px 2px #721a1a,
+    -1px -1px 0 #721a1a,
+    1px -1px 0 #721a1a;
   font-size: 150%;
 }
 
 td {
-    color: #fff;
+    color: #8d6767;
     text-shadow:
-      1px 1px 2px #000,
-      -1px 1px 2px #000,
-      -1px -1px 0 #000,
-      1px -1px 0 #000;
+      1px 1px 2px #721a1a,
+      -1px 1px 2px #721a1a,
+      -1px -1px 0 #721a1a,
+      1px -1px 0 #721a1a;
     font-size: 150%;
   }
 
@@ -85,14 +85,14 @@ td {
   border: solid;
   border-color: rgb(0, 0, 0);
   -webkit-text-stroke: px rgb(0, 0, 0);
-  color: #fff;
+  color: #8d6767;
   text-shadow:
-    1px 1px 2px #000,
-    -1px 1px 2px #000,
-    -1px -1px 0 #000,
-    1px -1px 0 #000;
+    1px 1px 2px #721a1a,
+    -1px 1px 2px #721a1a,
+    -1px -1px 0 #721a1a,
+    1px -1px 0 #721a1a;
 
-  box-shadow: 0 0 20px rgb(255, 255, 255);
+  box-shadow: 0 0 20px rgb(53, 21, 21);
 }
 
 

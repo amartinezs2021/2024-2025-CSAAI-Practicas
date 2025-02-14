@@ -41,10 +41,10 @@ th {
   border-bottom-right-radius: 20px;
   color: #8d6767;
   text-shadow:
-    1px 1px 2px #721a1a,
-    -1px 1px 2px #721a1a,
-    -1px -1px 0 #721a1a,
-    1px -1px 0 #721a1a;
+    1px 1px 2px #964242,
+    -1px 1px 2px #964242,
+    -1px -1px 0 #964242,
+    1px -1px 0 #964242;
     font-size: 150%;
 }
 #nombre{
@@ -60,20 +60,20 @@ li{
   text-align: left;
   color: #8d6767;
   text-shadow:
-    1px 1px 2px #721a1a,
-    -1px 1px 2px #721a1a,
-    -1px -1px 0 #721a1a,
-    1px -1px 0 #721a1a;
+    1px 1px 2px #964242,
+    -1px 1px 2px #964242,
+    -1px -1px 0 #964242,
+    1px -1px 0 #964242;
   font-size: 150%;
 }
 
 td {
     color: #8d6767;
     text-shadow:
-      1px 1px 2px #721a1a,
-      -1px 1px 2px #721a1a,
-      -1px -1px 0 #721a1a,
-      1px -1px 0 #721a1a;
+      1px 1px 2px #964242,
+      -1px 1px 2px #964242,
+      -1px -1px 0 #964242,
+      1px -1px 0 #964242;
     font-size: 150%;
   }
 
@@ -87,10 +87,10 @@ td {
   -webkit-text-stroke: px rgb(0, 0, 0);
   color: #8d6767;
   text-shadow:
-    1px 1px 2px #721a1a,
-    -1px 1px 2px #721a1a,
-    -1px -1px 0 #721a1a,
-    1px -1px 0 #721a1a;
+    1px 1px 2px #964242,
+    -1px 1px 2px #964242,
+    -1px -1px 0 #964242,
+    1px -1px 0 #964242;
 
   box-shadow: 0 0 20px rgb(53, 21, 21);
 }

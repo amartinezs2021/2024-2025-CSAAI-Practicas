@@ -21,8 +21,6 @@ body  {
   background-size: cover; 
   background-repeat: no-repeat;
   text-align: center;
-  width: 100%;
-  overflow-x: hidden;
 }
 
 #volverpagina{
@@ -117,8 +115,10 @@ td {
   }
 
 
-@media screen and (max-width: 600px) {
-
+@media screen and (max-width: 900px) {
+    .columna {
+      width: 100%;
+    }  
     .iresponsive {
         width: 100%;
     }

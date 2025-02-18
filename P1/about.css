@@ -17,8 +17,9 @@ img{
 }
 
 body  {
-  background-image: url('añejo.webp');
+  background-image: url('FondoCSS.jpg');
   background-size: cover; 
+  background-repeat: no-repeat;
   text-align: center;
 }
 

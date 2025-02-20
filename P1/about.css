@@ -10,25 +10,19 @@
     margin: 0 auto;
   }  
 img{
-    width: auto;
-    border-radius: 10%;
+    width: 200px;
     height: auto;
-    border: solid;
-    border-color: black;
-    display: block;
     margin: 0 auto;
+    max-height: 100%;
 }
 
 body  {
   background-image: url('FondoCSS.jpg');
-  background-size: contain; 
-  background-position: top center;
+  background-size: contain;
   background-repeat: no-repeat;
   background-attachment: fixed;
   text-align: center;
   overflow-x: hidden;
-  margin: 0;
-  padding: 20px;
 }
 
 #volverpagina{
@@ -91,9 +85,6 @@ td {
       -1px -1px 0 #964242,
       1px -1px 0 #964242;
     font-size: 150%;
-    word-wrap:break-word;
-    text-align: justify;
-    line-heigth: 1.5;
   }
 
 .titulos {
@@ -121,9 +112,8 @@ td {
     float: left;
    
     text-align: center;
-    width: 300px;
+    width: 1600px;
     height: auto;
-    margin: 10px;
   }
 
 
@@ -131,7 +121,6 @@ td {
     
   body{
       background-size: cover;
-      background-position: center;
   }
   
   .columna {

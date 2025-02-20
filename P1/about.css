@@ -116,8 +116,14 @@ td {
   }
 
 
-@media screen and (max-width: 900px) {
-    .columna {
+@media screen and (max-width: 00px) {
+    
+  body{
+      background-size: cover;
+      background-position: center;
+  }
+  
+  .columna {
       width: 100%;
     }  
     .iresponsive {

@@ -52,22 +52,6 @@ clear: both;
     margin: 10px;
     padding: 25px;
 }
-
-/*Columna izquierda about.html*/
-#c3{
-  height: 100%;
-  margin: 10px;
-  padding: 25px;
-  border-radius: 10px; 
-}
-
-/*Columna derecha about.html*/
-#c4{
-  height: 100%;
-  margin: 10px;
-  padding: 30px;
-}
-
 /*Cuerpo index.html*/
 body{
   background-image: url('Fondonuevo');
@@ -75,11 +59,6 @@ body{
   background-repeat: no-repeat;
 }
 
-/*Cuerpo about.html*/
-.about{
-  background-image: url('fondo2.webp');
-  background-attachment:fixed;
-}
 
 /*Tipo de fuente*/
 @font-face{

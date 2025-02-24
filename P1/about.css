@@ -17,15 +17,11 @@ img{
     max-height: 100%;
 }
 
-body  {
+body{
   background-image: url('FondoCSS.jpg');
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  text-align: center;
-  overflow-x: hidden;
 }
-
 #volverpagina{
     padding: 10px;
     margin: 10px;

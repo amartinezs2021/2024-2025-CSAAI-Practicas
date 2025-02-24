@@ -210,7 +210,7 @@ img {
     padding: 0 6px;
     float: left;
     width: 50%;
-    text-aling: center;
+    text-align: center;
   }
 
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */

@@ -18,4 +18,23 @@ for (let j = 0; j < secretkey.length; j++) { //Se imprime en la consola el numer
   console.log(j + ' Secret Key '  + secretkey[j])
 }
 
-//eleme
+//elementos de la interfaz del juego
+const elemento ={
+    clave1: document.getElementById("clave1"),
+    clave2: document.getElementById("clave2"),
+    clave3: document.getElementById("clave3"),
+    clave4: document.getElementById("clave4"),
+    start: document.getElementById("start"),
+    stop: document.getElementById("stop"),
+    display: document.getElementById("display"),
+}
+
+clave1.innerHTML = ":(";
+clave2.innerHTML = ":(";
+clave3.innerHTML = ":(";
+clave4.innerHTML = ":(";
+
+clave1.style.color = "red";
+clave2.style.color = "red";
+clave3.style.color = "red";
+clave4.style.color = "red";

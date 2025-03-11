@@ -1,0 +1,80 @@
+*{
+    box-sizing: border -box;
+}
+
+body{
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+h1{
+    text-align: center;
+    color: rgba(211, 147, 94, 0.842);
+    text-shadow: 3px 3px 1px rgb(236, 168, 136), 5px 5px 2px rgb(163, 136, 95);
+    font-size:60px;
+
+}
+
+button {
+    background-color: rgb(206, 64, 8) ;
+    padding: 20px;
+    border: rgb(163, 136, 95);
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    box-shadow: 10px 10px 10px rgb(196,49,4), -10px -10px 5px rgb(177, 54, 5) inset;
+    text-align: left;
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+    font-size: 30px;
+    color: #ece4dd;
+    text-shadow: -1px 0 #f59505, 0 1px #f59505, 1px 0 #f59505, 0 -1px #f59505, -2px 2px 0 #f59505, 2px 2px 0 #f59505, 1px 1px #f59505, 2px 2px #f59505, 3px 3px #f59505, 4px 4px #f59505, 5px 5px #f59505;
+}
+
+.clavesecreta {
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.claves {
+    margin: 5px;
+    margin-top: 10px;
+    display:flex;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgb(226, 218, 208);
+    border-radius: 10px;
+    box-shadow:
+    -10px -10px 5px rgb(245, 139, 90),
+    10px 10px 10px rgb(255, 94, 0);
+    border: solid rgb(255, 123, 0);
+}
+
+
+.numeros {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#display{
+    align-content: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 20px;
+    background-color: rgba(248, 194, 18, 0.849);
+    border-radius: 10px;
+    font-size: 30px;
+    border: solid rgb(247, 190, 5);
+    color: rgb(235, 226, 198);
+    font-weight: 800;
+    box-shadow: 5px 10px 10px rgb(201, 155, 6);
+  
+}

@@ -38,3 +38,21 @@ clave1.style.color = "red";
 clave2.style.color = "red";
 clave3.style.color = "red";
 clave4.style.color = "red";
+
+const ESTADO = {
+  INIT: 0,
+  ADIVINADO: 1,
+  CORRECTO: 2,
+}
+
+let estado = ESTADO.INIT;
+
+function juego(ev) {
+  if (estado == ESTADO.INIT){
+    estado = ESTADO.ADIVINANDO;
+    console.log("Ha comenzado el juego");
+    display.innerHTML = crono.start();
+  }else{
+    
+  }
+}

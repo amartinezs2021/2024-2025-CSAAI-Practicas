@@ -29,18 +29,15 @@ const elemento ={
     display: document.getElementById("display"),
 }
 
-clave1.innerHTML = ":(";
-clave2.innerHTML = ":(";
-clave3.innerHTML = ":(";
-clave4.innerHTML = ":(";
+clave1.innerHTML = "*";
+clave2.innerHTML = "*";
+clave3.innerHTML = "*";
+clave4.innerHTML = "*";
 
-clave1.style.color = "red";
-clave2.style.color = "red";
-clave3.style.color = "red";
-clave4.style.color = "red";
-
-var intentosRestantes = 7;
-var intentos = 0;
+clave1.style.color = "blue";
+clave2.style.color = "blue";
+clave3.style.color = "blue";
+clave4.style.color = "blue";
 
 const ESTADO = {
   INIT: 0,
@@ -53,14 +50,10 @@ let estado = ESTADO.INIT;
 function juego(ev) {
   if (estado == ESTADO.INIT){
     estado = ESTADO.ADIVINANDO;
-    console.log("Ha comenzado el juego");
+    console.log("RAPIDO, ANTES DE QUE TE VEA JINX");
     display.innerHTML = crono.start();
   }else{
     if(estado == ESTADO.ADIVINANDO){
-      if (intentsoRestantes > 0) {
-        intentosRestantes--;
-        console.log("Intentos restantes: " + intentosRestantes);
-      
       if(secretkey[0] == ev.target.value){
 
         elemento.clave1.innerHTML = secretkey[0];
@@ -90,23 +83,13 @@ function juego(ev) {
         "adivinado" == secretkey[1] &&
         "adivinado" == secretkey[2] &&
         "adivinado" == secretkey[3]) {
-          console.log("¡Aiko esta muy orgullosa de lo que has conseguido!");
+          console.log("¡Has conseguido escapar de Jinx!");
           crono.stop();
         }
-      }else{
-        console.log("¡Has agotado tus 7 intentos! Aiko quiere que te vayas...");
-        display.innerHTML = "¡Juego terminado! No te quedan intentos. Huye antes de que Aiko te pille"
       
-
-        if (intentosRestantes === 0) {
-          console.log("Realmente Aiko esta muy decepcionado de esto.");
-          crono.stop();
-          display.innerHTML = "Juego terminado. Se acabaron los intentos. Aiko te juzga...";
         }
       }   
     }
-  }
-}
 
 digitos = document.getElementsByClassName("digito")
 

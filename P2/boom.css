@@ -17,6 +17,10 @@ h1{
 
 }
 
+p{
+    text-shadow: 2px 2px 4px black;
+}
+
 button {
     background-color: rgb(206, 64, 8) ;
     padding: 20px;

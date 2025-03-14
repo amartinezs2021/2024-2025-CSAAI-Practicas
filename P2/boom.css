@@ -22,19 +22,19 @@ p{
 }
 
 button {
-    background-color: rgb(206, 64, 8) ;
+    background-color: rgb(39, 15, 148) ;
     padding: 20px;
-    border: rgb(163, 136, 95);
+    border: rgb(55, 24, 128);
     border-radius: 10px;
     margin-right: 5px;
     margin-left: 5px;
-    box-shadow: 10px 10px 10px rgb(196,49,4), -10px -10px 5px rgb(177, 54, 5) inset;
+    box-shadow: 10px 10px 10px rgb(102, 94, 204), -10px -10px 5px rgb(177, 54, 5) inset;
     text-align: left;
     font-family: "Comic Sans MS";
     font-weight: bold;
     font-size: 30px;
     color: #ece4dd;
-    text-shadow: -1px 0 #f59505, 0 1px #f59505, 1px 0 #f59505, 0 -1px #f59505, -2px 2px 0 #f59505, 2px 2px 0 #f59505, 1px 1px #f59505, 2px 2px #f59505, 3px 3px #f59505, 4px 4px #f59505, 5px 5px #f59505;
+    text-shadow: -1px 0 #525ecc, 0 1px #525ecc, 1px 0 #525ecc, 0 -1px #525ecc, -2px 2px 0 #525ecc, 2px 2px 0 #525ecc, 1px 1px #525ecc, 2px 2px #525ecc, 3px 3px #525ecc, 4px 4px #525ecc, 5px 5px #525ecc;
 }
 
 .clavesecreta {
@@ -54,9 +54,9 @@ button {
     background-color: rgb(226, 218, 208);
     border-radius: 10px;
     box-shadow:
-    -10px -10px 5px rgb(245, 139, 90),
-    10px 10px 10px rgb(255, 94, 0);
-    border: solid rgb(255, 123, 0);
+    -10px -10px 5px rgb(54, 63, 150),
+    10px 10px 10px rgb(54, 32, 136);
+    border: solid rgb(49, 51, 153);
 }
 
 
@@ -73,12 +73,12 @@ button {
     margin-right: auto;
     width: fit-content;
     padding: 20px;
-    background-color: rgba(248, 194, 18, 0.849);
+    background-color: rgba(23, 13, 165, 0.849);
     border-radius: 10px;
     font-size: 30px;
-    border: solid rgb(247, 190, 5);
+    border: solid rgb(24, 35, 184);
     color: rgb(235, 226, 198);
     font-weight: 800;
-    box-shadow: 5px 10px 10px rgb(201, 155, 6);
+    box-shadow: 5px 10px 10px rgb(46, 55, 143);
   
 }

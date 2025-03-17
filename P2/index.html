@@ -1,68 +1,72 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡BOOM!</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>BOOM!</title>
+    <link rel="stylesheet" href="boom.css">
+    <script src="cronoBueno.js"></script>
+    <script src="boom.js" defer></script>
 
-     <!-- Hoja de estilo -->
-   <link rel="icon" href="faviconbomba.png">
-   <script src="crono.js" defer></script>
-   <script src="cronoBueno.js" defer></script>
-   <script src="boom.js" defer></script>
-   <link rel="stylesheet" href="boom.css"> 
 </head>
-
 <body>
+    <div id="menu">
+        <h1>Bienvenido Jugador</h1>
+        <div id="info">
+            <ul>
+                <li id= "l1"><h2>¡Jajaja! ¡Hola, hola! Me alegra que hayas decidido jugar a mi juego. Me encanta un buen reto.</h2></li>
+                <li id= "l2"><h2>Si quieres escapar, necesitarás ser más lista que eso, ¡pero no te preocupes! Te daré una pista…</h2></li>
+                <li id= "l3"><h2>La clave de la bomba, ¿eh? ¡Qué emocionante! Está justo frente a ti, pero, ¿cómo puedes saberla?  </h2></li>
+                <li id= "l4"><h2>Hmm... Pista número uno: la respuesta se encuentra en 4 numeros</h2></li>
+                <li id= "l5"><h2>Piénsalo bien, porque si no lo adivinas... ¡BOOOM! 💥 ¡Oops!</h2></li>
+            </ul>
+            <div id="info2">
+                <p>Empieza a jugar</p>
+                <button id="botonContinuar">Continuar</button>
+            </div>
+            <img src="jinx_arcane.gif" alt="">
+        </div>
     </div>
-    <div>
-        <h1>¡BOOM!</h1>
-        <h2 style="color:rgb(8, 103, 180)">¡Oh no! Has caido en la trampa de Jinx, sabe que eres un fireligths</h3>
-        <h2 style = "color:rgb(8, 103, 180)">¡Adivina la clave antes de que la bomba de Jinx explote!</h3>
+    <div id="columna">
+        <div id="izquierda">
+            <h1 id="titulo">BOOM!</h1>
+        </div>
+        <div id="derecha">
+            <div id="principal">   
+                <div id="contenedor"> 
+                    <p class="m" id="m1">*</p>
+                    <p class="m" id="m2">*</p>
+                    <p class="m" id="m3">*</p>
+                    <p class="m" id="m4">*</p>
+                </div>
+                <p id="display2">0:0:0</p>
+                <div id="botones">
+                    <div id="digitos">
+                        <button type="button" id="boton7" value="7" class="digito">7</button>
+                        <button type="button" id="boton8" value="8" class="digito">8</button>
+                        <button type="button" id="boton9" value="9" class="digito">9</button>
+                        <br>
+                        <button type="button" id="boton4" value="4" class="digito">4</button>
+                        <button type="button" id="boton5" value="5" class="digito">5</button>
+                        <button type="button" id="boton6" value="6" class="digito">6</button>
+                        <br>
+                        <button type="button" id="boton1" value="1" class="digito">1</button>
+                        <button type="button" id="boton2" value="2" class="digito">2</button>
+                        <button type="button" id="boton3" value="3" class="digito">3</button>
+                        <br>
+                        <button type="button" id="boton0" value="0" class="digito">0</button>
+                        <br>
+                    </div>
+                    <div id="state">
+                        <button type="button" id="start" class="estado">Start</button>
+                        <button type="button" id="stop" class="estado">Stop</button>
+                        <button type="button" id="reset" class="estado">Reset</button>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <p id="intentos">Intento: 0</p>
     </div>
-
-<div class = "clavesecreta">
-    <p id = "clave1" class = "claves"></p>
-    <p id = "clave2" class = "claves"></p>
-    <p id = "clave3" class = "claves"></p>
-    <p id = "clave4" class = "claves"></p>
-</div>
-
-<div>
-    <p id="display">0:0:0</p>
-</div>
-
-<div class = "numeros">
-    <button type="button" id="boton1" value="1" class="digito">1</button>
-    <button type="button" id="boton2" value="2" class="digito">2</button>
-    <button type="button" id="boton3" value="1" class="digito">3</button>
-    <br><br>
-</div>
-
-<div class = "numeros">
-    <button type="button" id="boton4" value="4" class="digito">4</button>
-    <button type="button" id="boton5" value="5" class="digito">5</button>
-    <button type="button" id="boton6" value="6" class="digito">6</button>
-    <br><br>
-</div>
-
-<div class = "numeros">
-    <button type="button" id="boton7" value="7" class="digito">7</button>
-    <button type="button" id="boton8" value="8" class="digito">8</button>
-    <button type="button" id="boton9" value="9" class="digito">9</button>
-    <br><br>
-</div>
-
-<div class = "numeros">
-    <button type="button" id="boton0" value="0" class = "digito">0</button>
-    <br><br>
-</div>
-
-<div class = "numeros">
-    <button type="button" id="start">Start</button>
-    <button type="button" id="stop">Stop</button>
-    <button type="button" id="reset">Reset</button>
-</div>
-
 </body>
+</html>

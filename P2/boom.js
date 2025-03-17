@@ -1,104 +1,127 @@
-console.log("Ejecutando JS...");
+var menu = document.getElementById("menu");
+var juego = document.getElementById("columna");     
+var botonContinuar = document.getElementById("botonContinuar");     
+menu.style.display = "";
+juego.style.display = "none";
 
-const secretkey = []; //Array vacio para almacenar la clave
+const titulo = document.getElementById("titulo");
+const botones = document.getElementsByClassName("digito");
+const m1 = document.getElementById("m1");
+const m2 = document.getElementById("m2");
+const m3 = document.getElementById("m3");
+const m4 = document.getElementById("m4");
+const numIntentos = document.getElementById("intentos");
 
-function getRandomInt(max) { //Genera un numero entero aleatorio
-
-  return Math.floor(Math.random() * max); 
+//--Elementos del cronómetro
+const reloj = {
+  display2 : document.getElementById("display2"),
+  start : document.getElementById("start"),
+  stop : document.getElementById("stop"),
+  reset : document.getElementById("reset"),
 }
 
-for (let i = 0; i<4; i++){ //se ejecuta 4 veces, ya que queremos una clave de 4 numeros 
+//-- Variables de la clave secreta a adivinar
+let min = 0;
+let max = 9;
+let valorM1 = Math.floor(Math.random() * (max - min + 1)) + min;  
+let valorM2 = Math.floor(Math.random() * (max - min + 1)) + min;
+let valorM3 = Math.floor(Math.random() * (max - min + 1)) + min;
+let valorM4 = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  let rnum = getRandomInt(10); //En cada iteraccion se genera un numero entre el 0 y el 9 (el 10 no se incluye)
-  secretkey.push(rnum.toString());//Se convierte en una cadena de texto antes de añadirlo al array
+var acierto = 0;
+var intentos = 0;
 
+const crono = new Crono(reloj.display2);
+//-- Arranque del cronometro
+reloj.start.onclick = () => {
+  console.log("Start!!");
+  crono.start();
+}
+//-- Detener el cronómetro
+reloj.stop.onclick = () => {
+  console.log("Stop!");
+  crono.stop();
+}
+//-- Reset del cronómetro
+reloj.reset.onclick = () => {
+  console.log("Reset!");
+
+  //-- Devolvemos al estado inicial
+  m1.innerHTML = "*";   
+  m2.innerHTML = "*";
+  m3.innerHTML = "*";
+  m4.innerHTML = "*";
+
+  //-- Reasignando valores aleatorios
+  valorM1 = Math.floor(Math.random() * (max - min + 1)) + min;  
+  valorM2 = Math.floor(Math.random() * (max - min + 1)) + min;
+  valorM3 = Math.floor(Math.random() * (max - min + 1)) + min;
+  valorM4 = Math.floor(Math.random() * (max - min + 1)) + min;
+  console.log("Clave: ",valorM1, valorM2, valorM3, valorM4);
+  numIntentos.innerHTML = ("Intentos: " + intentos);
+
+  //--Reseteamos numero de aciertos e intentos
+  acierto = 0;
+  intentos = 1;
+  titulo.innerHTML = "BOOM!";
+  crono.reset();
 }
 
-for (let j = 0; j < secretkey.length; j++) { //Se imprime en la consola el numero generado
-  console.log(j + ' Secret Key '  + secretkey[j])
-}
+botonContinuar.addEventListener("click", function() {
+  // Oculta la pantalla inicial
+  menu.style.display = "none";
+  console.log("Mostrando Menú principal");
+  // Muestra el contenido principal
+  juego.style.display = "block";
+  console.log("Mostrando Juego");
 
-//Elementos de la interfaz del juego
-const elemento = {
-  clave1: document.getElementById("clave1"),
-  clave2: document.getElementById("clave2"),
-  clave3: document.getElementById("clave3"),
-  clave4: document.getElementById("clave4"),
-  start: document.getElementById("start"),
-  stop: document.getElementById("stop"),
-  display: document.getElementById("display"),
-}
-clave1.innerHTML = "*";
-clave2.innerHTML = "*";
-clave3.innerHTML = "*";
-clave4.innerHTML = "*";
+});
 
-clave1.style.color = "blue";
-clave2.style.color = "blue";
-clave3.style.color = "blue";
-clave4.style.color = "blue";
+console.log("Clave: ",valorM1, valorM2, valorM3, valorM4);
 
-//Estados del Juego
-const ESTADO = {
-  INIT: 0,
-  ADIVINANDO: 1,
-  CORRECTO: 2,
-}
 
-let estado = ESTADO.INIT;
-
-function juego(ev) {
-  if (estado == ESTADO.INIT){
-
-    estado = ESTADO.ADIVINANDO;
-    console.log("El juego ha comenzado");  
-    display.innerHTML = crono.start();
-    
-  } else {
-
-  if(estado == ESTADO.ADIVINANDO){
-      if (secretkey[0] == ev.target.value) {
-
-        elemento.clave1.innerHTML = secretkey[0];
-        clave1.style.color = "green";
-        secretkey[0]= "adivinado"
-
-      }
-      else if (secretkey[1] == ev.target.value) {
-
-        elemento.clave2.innerHTML = secretkey[1];
-        clave2.style.color = "green";
-        secretkey[1]= "adivinado"
-      } 
-      else if (secretkey[2] == ev.target.value) {
-
-        elemento.clave3.innerHTML = secretkey[2];
-        clave3.style.color = "green";
-        secretkey[2]= "adivinado"
-      }
-      else if (secretkey[3] == ev.target.value) {
-
-        elemento.clave4.innerHTML = secretkey[3];
-        clave4.style.color = "green";
-        secretkey[3]= "adivinado"
-      }
-
-      if ("adivinado" === secretkey[0] &&
-      "adivinado" === secretkey[1] &&
-      "adivinado" === secretkey[2] &&
-      "adivinado" === secretkey[3]) {
-      console.log("¡Has adivinado la clave!");
-      crono.stop();
-      }
-    }
-  }
-}
-
-digitos = document.getElementsByClassName("digito")
-
-for (let boton of digitos) {
-
+for (let boton of botones) {
   boton.onclick = (ev) => {
-    juego(ev);
-  }
+  crono.start();
+  console.log("Intentos: ", intentos);
+  if (boton.value == valorM1 && m1.innerHTML === '*'){
+    console.log("Botón: ",boton.value,"| Aciertos: ", acierto);
+    m1.innerHTML = boton.value; 
+    acierto += 1;
+    }     
+  if (boton.value == valorM2 && m2.innerHTML === '*'){
+      var y = 0;
+      console.log("Botón: ",boton.value,"| Aciertos: ", acierto);
+      m2.innerHTML = boton.value; 
+      acierto += 1;
+      }        
+  if (boton.value == valorM3 && m3.innerHTML === '*'){
+      console.log("Botón: ",boton.value,"| Aciertos: ", acierto);
+      m3.innerHTML = boton.value; 
+      acierto += 1;
+      }        
+  if (boton.value == valorM4 && m4.innerHTML === '*'){
+      console.log("Botón: ",boton.value,"| Aciertos: ", acierto);
+      m4.innerHTML = boton.value; 
+      acierto += 1;
+      }
+  if ( acierto == 4){
+        console.log("Stop!");
+        crono.stop();
+        titulo.innerHTML = "YOU WIN!";
+        acierto = 0;
+        intentos = 0;
+      }
+
+  if (intentos < 7){
+      intentos += 1;
+      numIntentos.innerHTML = ("Intento: "+ (intentos));
+    }
+    else{
+      titulo.innerHTML = "GAME OVER..."
+      console.log("Stop!");
+      crono.stop();
+      intentos = 1;
+      }      
+ }
 }

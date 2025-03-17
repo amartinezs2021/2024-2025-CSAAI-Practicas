@@ -1,83 +1,226 @@
 *{
-    box-sizing: border -box;
+	box-sizing: border-box;
 }
 
-body{
-    background-image: url('jinx.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-
-}
 
 h1{
-    text-align: center;
-    color: rgba(31, 49, 82, 0.842);
-    text-shadow: 3px 3px 1px rgba(31, 49, 82, 0.842), 5px 5px 2px rgb(163, 136, 95);
-    font-size:60px;
-
+    font-size:500%;
+    margin-left: 20% ;
+    color: rgb(38, 92, 163);
+    font-weight: bold;
+    font-family: 'Century Gothic', sans-serif;
+    font-style: italic;
+    animation: llama 1s infinite alternate-reverse;
 }
 
 h2{
-    text-shadow: 2px 2px 4px black;
-}
-
-button {
-    background-color: rgb(39, 15, 148) ;
-    padding: 20px;
-    border: rgb(55, 24, 128);
-    border-radius: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
-    box-shadow: 10px 10px 10px rgb(102, 94, 204), -10px -10px 5px rgb(177, 54, 5) inset;
-    text-align: left;
-    font-family: "Comic Sans MS";
+    margin-right: 100px;
+    color: rgb(38, 92, 163);
     font-weight: bold;
-    font-size: 30px;
-    color: #ece4dd;
-    text-shadow: -1px 0 #525ecc, 0 1px #525ecc, 1px 0 #525ecc, 0 -1px #525ecc, -2px 2px 0 #525ecc, 2px 2px 0 #525ecc, 1px 1px #525ecc, 2px 2px #525ecc, 3px 3px #525ecc, 4px 4px #525ecc, 5px 5px #525ecc;
+    font-family: 'Century Gothic', sans-serif;
+    font-style: italic;
 }
 
-.clavesecreta {
-    text-align: center;
-    margin: 10px;
+body{
+  background-image: url('jinx.jpeg');
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+#info{
+  margin-left: 20%;
+}
+
+#info2{
+  margin-left: 5%;
+}
+
+p{
+    margin:20px;
+    color: rgb(38, 92, 163);
+    font-weight: bold;
+  
+  }
+
+#principal{
+  border: transparent;
+  border-radius: 30px;
+    
+}
+  
+.columna {
+    float: left;
+    padding: 10px;
+    min-height: 500px;
+    font-family: 'Century Gothic', sans-serif;
+    }
+    
+.izquierda {
+    width: 25%;
+    border-radius: 10px
+    }
+    
+.derecha {
+    width: 70%;
+    border-radius: 10px;
+    }
+
+#contenedor p{
+  display: inline; /* Hace que los párrafos se muestren en línea */
+  margin-left: 55px;
+  font-size: 50px;
+  }
+
+
+#principal{
+    border: solid;
+    border-color: rgb(38, 92, 163);
+    background-color: #9214db;
+    font-weight: bold;
+    border-radius: 10px;
+
+}
+  
+button{
+  font-size: 50px;
+  background-color: rgba(0, 0, 0, .4);
+  border: none;
+  color: rgb(38, 92, 163);
+  font-weight: bold;
+  cursor: pointer;
+  }
+  
+#display2{
+  margin-left: 110px;
+  font-weight: bold;
+  margin-left: 180px;
+  font-size: 45px;
+  }
+  
+.m{
     display: flex;
-    justify-content: center;
+    color: #33adff;     
+    margin-left: 30px; 
 }
-
-.claves {
-    margin: 5px;
-    margin-top: 10px;
-    display:flex;
-    padding: 20px;
-    text-align: center;
-    font-size: 30px;
-    background-color: rgb(226, 218, 208);
-    border-radius: 10px;
-    box-shadow:
-    -10px -10px 5px rgb(54, 63, 150),
-    10px 10px 10px rgb(54, 32, 136);
-    border: solid rgb(49, 51, 153);
-}
+#digitos{
+  margin-left: 165px ;
+  font-size: 60px;
+  border: none; 
+  }
 
 
-.numeros {
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: center;
+#state{
+    margin: 30px;
+}
+  
+#boton0{
+    margin-left: 55px;
+}
+.estado{
+  margin-bottom: 50px;
+  }
+
+#intentos{
+  font-size: 30px;
 }
 
-#display{
-    align-content: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    padding: 20px;
-    background-color: rgba(23, 13, 165, 0.849);
-    border-radius: 10px;
-    font-size: 30px;
-    border: solid rgb(24, 35, 184);
-    color: rgb(235, 226, 198);
-    font-weight: 800;
-    box-shadow: 5px 10px 10px rgb(46, 55, 143);
+#l1{color: red;}
+#l2{color: purple;}
+#l3{color: rgb(0, 245, 82);}
+#l4{color: yellow}
+#l5{color: blue;}
+
+
+@media screen and (max-width: 400px) {
+      
+    p{
+      font-size: 20px
+    }
+    button{
+        font-size: 40px;;
+    }
+    h1{
+      font-size: 30px;
+    }
+  
+    #state{
+      padding-left: 60px;
+      margin-top: 30px;
+    }
+    #contenedor p{
+      margin-left: 55px;
+      font-size: 20px;
+    }
+    #display2{
+        margin-left: 90px;
+    }
+    #reset{
+        margin-left: 60px;
+    }
+
+    #digitos{
+        margin-left: 120px;
+    }
+    #principal{
+        margin-left: 40px;;
+    }
 }
+
+@media screen and (max-width: 600px) {
+    .columna {
+      width: 100%;
+    }
+    h1{
+      font-size: 60px;
+    }
+    
+    #display2 {
+      font-size: 45px;
+    }
+    #derecha{
+      margin-right: 40px;
+    }   
+    
+    #boton0{
+      margin-left: 50px;
+    }
+    #digitos{
+      margin-left: 80px;
+    }
+
+    #state button{
+      margin: 5px;
+    }
+    #state{
+      margin-left: 20px;  
+    }
+  
+    #contenedor p{
+      font-size: 40px;
+      margin: 20px
+    }
+    #info2{
+      font-size: 20px;
+    }
+    #menu h1{
+      font-size: 300%;
+      }
+    img{
+        height: 300px;
+        margin-right: 200px;
+        margin-top:  30px; 
+        }
+
+}
+  /* Efecto luminoso en el título*/
+@keyframes llama {
+    0% {
+        text-shadow: 0 0 0px #0062f5, 0 0 10px #069bc0, 0 0 40px #5c0bc5, 0 0 50px #069bc0, 0 0 60px #069bc0, 0 0 70px #5c0bc5, 0 0 80px #069bc0, 0 0 9px #069bc0;
+    }
+    100% {
+        text-shadow: 0 0 px #0062f5, 0 0 30px #069bc0, 0 0 0px #069bc0, 0 0 0px #069bc0, 0 0 60px #5c0bc5, 0 0 70px #5c0bc5, 0 0 80px #069bc0, 0 0 90px #069bc0, 0 0 100px #069bc0, 0 0 110px #069bc0, 0 0 120px #5c0bc5;
+    }
+  }

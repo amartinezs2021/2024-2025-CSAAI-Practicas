@@ -18,17 +18,16 @@ for (let j = 0; j < secretkey.length; j++) { //Se imprime en la consola el numer
   console.log(j + ' Secret Key '  + secretkey[j])
 }
 
-//elementos de la interfaz del juego
-const elemento ={
-    clave1: document.getElementById("clave1"),
-    clave2: document.getElementById("clave2"),
-    clave3: document.getElementById("clave3"),
-    clave4: document.getElementById("clave4"),
-    start: document.getElementById("start"),
-    stop: document.getElementById("stop"),
-    display: document.getElementById("display"),
+//Elementos de la interfaz del juego
+const elemento = {
+  clave1: document.getElementById("clave1"),
+  clave2: document.getElementById("clave2"),
+  clave3: document.getElementById("clave3"),
+  clave4: document.getElementById("clave4"),
+  start: document.getElementById("start"),
+  stop: document.getElementById("stop"),
+  display: document.getElementById("display"),
 }
-
 clave1.innerHTML = "*";
 clave2.innerHTML = "*";
 clave3.innerHTML = "*";
@@ -39,9 +38,10 @@ clave2.style.color = "blue";
 clave3.style.color = "blue";
 clave4.style.color = "blue";
 
+//Estados del Juego
 const ESTADO = {
   INIT: 0,
-  ADIVINADO: 1,
+  ADIVINANDO: 1,
   CORRECTO: 2,
 }
 
@@ -49,51 +49,55 @@ let estado = ESTADO.INIT;
 
 function juego(ev) {
   if (estado == ESTADO.INIT){
+
     estado = ESTADO.ADIVINANDO;
-    console.log("RAPIDO, ANTES DE QUE TE VEA JINX");
+    console.log("El juego ha comenzado");  
     display.innerHTML = crono.start();
-  }else{
-    if(estado == ESTADO.ADIVINANDO){
-      if(secretkey[0] == ev.target.value){
+    
+  } else {
+
+  if(estado == ESTADO.ADIVINANDO){
+      if (secretkey[0] == ev.target.value) {
 
         elemento.clave1.innerHTML = secretkey[0];
         clave1.style.color = "green";
         secretkey[0]= "adivinado"
+
       }
-      else if (secretkey[1] == ev.target.value){
+      else if (secretkey[1] == ev.target.value) {
 
         elemento.clave2.innerHTML = secretkey[1];
-        clave1.style.color = "green";
+        clave2.style.color = "green";
         secretkey[1]= "adivinado"
-      }
-      else if (secretkey[2] == ev.target.value){
-       
-        elemento.clave3.innerHTML = secretkey[1];
-        clave1.style.color = "green";
-        secretkey[2]= "adivinado"
       } 
-      else if (secretkey[3] == ev.target.value){
-       
-        elemento.clave4.innerHTML = secretkey[1];
-        clave1.style.color = "green";
+      else if (secretkey[2] == ev.target.value) {
+
+        elemento.clave3.innerHTML = secretkey[2];
+        clave3.style.color = "green";
+        secretkey[2]= "adivinado"
+      }
+      else if (secretkey[3] == ev.target.value) {
+
+        elemento.clave4.innerHTML = secretkey[3];
+        clave4.style.color = "green";
         secretkey[3]= "adivinado"
       }
 
-      if("adivinado" == secretkey[0] &&
-        "adivinado" == secretkey[1] &&
-        "adivinado" == secretkey[2] &&
-        "adivinado" == secretkey[3]) {
-          console.log("¡Has conseguido escapar de Jinx!");
-          crono.stop();
-        }
-      
-        }
-      }   
+      if ("adivinado" === secretkey[0] &&
+      "adivinado" === secretkey[1] &&
+      "adivinado" === secretkey[2] &&
+      "adivinado" === secretkey[3]) {
+      console.log("¡Has adivinado la clave!");
+      crono.stop();
+      }
     }
+  }
+}
 
 digitos = document.getElementsByClassName("digito")
 
-for ( let boton of digitos) {
+for (let boton of digitos) {
+
   boton.onclick = (ev) => {
     juego(ev);
   }

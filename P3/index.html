@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulpar vs Aliens</title>
+    <link rel="stylesheet" href="alien.css">
+</head>
+<body>
+    <div id="startScreen">
+        <h1>Tripulación Tulpar</h1>
+        <p>"Eres el nuevo integrante de la tripulación Tulpar, pero pony express ha salido de control, destruye a todos los enemigos antes de que ellos te eliminen a ti".</p>
+        <img id="fondoInicio" src="fondoInicio.gif" alt="Pony Express" width="300">
+        <button id="startButton">JUGAR</button>
+    </div>
+
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="gameInfo">
+            <div id="scoreDisplay">Puntos: 0</div>
+            <div id="livesDisplay">Vidas: 3</div>
+        </div>
+    </div>
+
+    <audio id="victorySound" src="sonido.mp3" preload="auto"></audio>
+    
+    <script src="alien.js"></script>
+</body>
+</html>

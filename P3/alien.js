@@ -42,3 +42,24 @@ let bullets = [];
 let enemies = [];
 let enemyBullets = [];
 
+// Iniciar juego
+startButton.addEventListener('click', () => {
+    startScreen.style.display = 'none';
+    gameContainer.style.display = 'block';
+    initGame();
+});
+
+function initGame() {
+    gameRunning = true;
+    score = 0;
+    lives = 3;
+    bullets = [];
+    enemies = [];
+    enemyBullets = [];
+    
+    updateScore();
+    updateLives();
+
+        // Iniciar bucle del juego
+        requestAnimationFrame(gameLoop);
+    }

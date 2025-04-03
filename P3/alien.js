@@ -63,3 +63,26 @@ function initGame() {
         // Iniciar bucle del juego
         requestAnimationFrame(gameLoop);
     }
+
+function gameLoop(timestamp) {
+    if (!gameRunning) return;
+        
+    const deltaTime = timestamp - lastTime;
+    lastTime = timestamp;
+        
+// Limpiar canvas
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+ // Actualizar y dibujar elementos
+updatePlayer(deltaTime);
+updateBullets(deltaTime); 
+updateEnemies(deltaTime);
+updateEnemyBullets(deltaTime);
+        
+           // Generación de enemigos
+    enemySpawnTimer += deltaTime;
+    if (enemySpawnTimer > 1000) { // Cada segundo
+        spawnEnemy();
+        enemySpawnTimer = 0;
+    }
+}   

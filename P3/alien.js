@@ -85,4 +85,22 @@ updateEnemyBullets(deltaTime);
         spawnEnemy();
         enemySpawnTimer = 0;
     }
-}   
+}  
+
+//Disparos enemigos
+enemyShootTimer += deltaTime;
+if (enemyShootTimer > 1500 && enemies.length > 0) {
+    enemyShoot();
+    enemyShootTimer = 0;
+}
+
+//Detencion de colisiones
+checkCollisions();
+
+//Comprobar victoria
+if (enemies.length === 0 && enemyBullest.length === 0) {
+    victory();
+    return;
+}
+requestAnimationFrame(gameLoop);
+

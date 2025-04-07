@@ -10,8 +10,23 @@
     body{
         margin: 0;
         padding:0;
-        background:url('fondoInicio.gif') no-repeat center center fixed;
+        background:url('Descent_into_Madness.gif') no-repeat center center fixed;
         background-size: cover;
+    }
+
+    #startScreen {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #hud, #gameContainer {
+        display: none;
     }
   </style>
 </head>
@@ -23,7 +38,6 @@
     <p>Es muy simple, muevete de derecha a izquierda con las flechas del teclado y pulsa espacio para disparar</p>
     <p>Buena suerte Curly, siempre al servicio de Pony Express</p>
     <button id="startButton">Emergency is comming</button>
-    <img scr = "Descent_into_Madness.gif" alt="">
     </div>
 
   <div id="hud">
@@ -32,6 +46,22 @@
   </div>
 
   <div id="gameContainer"></div>
+
+  <script>
+    document.getElementById("startButton").addEventListener("click", function () {
+      // Ocultar pantalla de inicio
+      document.getElementById("startScreen").style.display = "none";
+
+      // Mostrar HUD y contenedor del juego
+      document.getElementById("hud").style.display = "block";
+      document.getElementById("gameContainer").style.display = "block";
+
+      // Cambiar fondo a fondoInicio.gif
+      document.body.style.background = "url('fondoInicio.gif') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+    });
+  </script>
+
 
   <script src="alien.js"></script>
 </body>

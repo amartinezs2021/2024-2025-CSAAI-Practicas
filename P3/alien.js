@@ -22,10 +22,10 @@ let enemyShootTimer = 0;
 
 // Imágenes
 const playerImg = new Image();
-playerImg.src = 'nave.png';
+playerImg.src = 'naveBuena.png';
 
 const enemyImg = new Image();
-enemyImg.src = 'imagen.png';
+enemyImg.src = 'images.png';
 
 // Objetos del juego
 const player = {

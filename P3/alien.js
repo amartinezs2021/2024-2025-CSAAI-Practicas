@@ -275,3 +275,26 @@ function victory() {
         location.reload();
     }, 5000);
 }
+
+// Controles
+document.addEventListener('keydown', (e) => {
+    if (!gameRunning) return;
+    
+    switch(e.key) {
+        case 'ArrowLeft':
+            player.isMovingLeft = true;
+            break;
+        case 'ArrowRight':
+            player.isMovingRight = true;
+            break;
+        case ' ':
+            // Disparar
+            bullets.push({
+                x: player.x,
+                y: player.y - player.height / 2,
+                speed: 10
+            });
+            break;
+    }
+});
+

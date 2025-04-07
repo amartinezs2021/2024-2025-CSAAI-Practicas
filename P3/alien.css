@@ -21,8 +21,6 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: url('fondoInicio.gif') no-repeat center center;
-    background-size: cover;
     z-index: 10;
 }
 

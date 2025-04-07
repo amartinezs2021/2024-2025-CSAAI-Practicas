@@ -240,3 +240,38 @@ function checkCollisions() {
 }
 }
 
+function checkCollision(obj1, obj2) {
+    return obj1.x < obj2.x + obj2.width / 2 &&
+           obj1.x > obj2.x - obj2.width / 2 &&
+           obj1.y < obj2.y + obj2.height / 2 &&
+           obj1.y > obj2.y - obj2.height / 2;
+}
+
+function updateScore() {
+    scoreDisplay.textContent = `Puntos: ${score}`;
+}
+
+function updateLives() {
+    livesDisplay.textContent = `Vidas: ${lives}`;
+}
+
+function gameOver() {
+    gameRunning = false;
+    alert(`¡Game Over! Puntuación final: ${score}`);
+    location.reload();
+}
+
+function victory() {
+    gameRunning = false;
+    victorySound.play();
+
+    const victoryMessage = document.createElement('div');
+    victoryMessage.id = 'victoryMessage';
+    victoryMessage.innerHTML = '¡VICTORIA!<br>Puntuación final: ' + score;
+    document.body.appendChild(victoryMessage);
+    victoryMessage.style.display = 'block';
+    
+    setTimeout(() => {
+        location.reload();
+    }, 5000);
+}

@@ -1,3 +1,4 @@
+// Elementos principales
 const gameContainer = document.getElementById('gameContainer');
 const startButton = document.getElementById('startButton');
 const player = document.createElement('div');
@@ -16,8 +17,7 @@ let gameRunning = false;
 const totalEnemies = 10;
 let enemiesRemaining = totalEnemies;
 
-// Reproducir sonido de disparo
-const shootSound = new Audio('sonido.mp3');
+const shootSound = document.getElementById('shootSound');
 
 // Crear enemigos
 function createEnemies() {
@@ -36,16 +36,25 @@ function movePlayer(event) {
   if (!gameRunning) return;
 
   if (event.key === 'ArrowLeft') {
-    playerPosition = Math.max(0, playerPosition - 10);
+    moveLeft();
   } else if (event.key === 'ArrowRight') {
-    playerPosition = Math.min(360, playerPosition + 10);
+    moveRight();
   } else if (event.code === 'Space') {
     shootBullet();
   }
+}
+
+function moveLeft() {
+  playerPosition = Math.max(0, playerPosition - 10);
   player.style.left = `${playerPosition}px`;
 }
 
-// Disparo del jugador
+function moveRight() {
+  playerPosition = Math.min(360, playerPosition + 10);
+  player.style.left = `${playerPosition}px`;
+}
+
+// Disparo
 function shootBullet() {
   shootSound.currentTime = 0;
   shootSound.play();
@@ -65,7 +74,7 @@ function movePlayerBullets() {
     let top = parseInt(bullet.style.top);
     bullet.style.top = `${top - 10}px`;
 
-    // Colisión con enemigo
+    // Colisión con enemigos
     for (let j = enemies.length - 1; j >= 0; j--) {
       const enemy = enemies[j];
       if (
@@ -78,12 +87,12 @@ function movePlayerBullets() {
         playerBullets.splice(i, 1);
         score += 10;
         enemiesRemaining--;
+        updateHUD();
         checkVictory();
         break;
       }
     }
 
-    // Eliminar bala fuera del campo
     if (top < 0 && bullet.parentNode) {
       gameContainer.removeChild(bullet);
       playerBullets.splice(i, 1);
@@ -91,14 +100,13 @@ function movePlayerBullets() {
   }
 }
 
-// Movimiento de balas enemigas
+// Movimiento balas enemigas
 function moveEnemyBullets() {
   for (let i = enemyBullets.length - 1; i >= 0; i--) {
     const bullet = enemyBullets[i];
     let top = parseInt(bullet.style.top);
     bullet.style.top = `${top + 5}px`;
 
-    // Colisión con el jugador
     if (
       Math.abs(parseInt(bullet.style.left) - playerPosition - 15) < 20 &&
       Math.abs(top - 360) < 20
@@ -106,11 +114,11 @@ function moveEnemyBullets() {
       gameContainer.removeChild(bullet);
       enemyBullets.splice(i, 1);
       lives--;
+      updateHUD();
       checkDefeat();
       continue;
     }
 
-    // Eliminar bala fuera del campo
     if (top > 400 && bullet.parentNode) {
       gameContainer.removeChild(bullet);
       enemyBullets.splice(i, 1);
@@ -118,7 +126,7 @@ function moveEnemyBullets() {
   }
 }
 
-// Disparos aleatorios de enemigos
+// Disparos enemigos
 function enemyShoot() {
   if (enemies.length === 0) return;
   const shooter = enemies[Math.floor(Math.random() * enemies.length)];
@@ -130,14 +138,19 @@ function enemyShoot() {
   enemyBullets.push(bullet);
 }
 
-// Comprobar victoria
+// Actualizar HUD
+function updateHUD() {
+  document.getElementById('score').innerText = `Puntos: ${score}`;
+  document.getElementById('lives').innerText = `Vidas: ${lives}`;
+}
+
+// Comprobar victoria/derrota
 function checkVictory() {
   if (enemiesRemaining === 0) {
     endGame(`¡Victoria! Puntuación: ${score}`);
   }
 }
 
-// Comprobar derrota
 function checkDefeat() {
   if (lives <= 0) {
     endGame(`Derrota. Puntuación: ${score}`);
@@ -150,12 +163,14 @@ function endGame(message) {
   clearInterval(enemyFireInterval);
   gameRunning = false;
   alert(message);
-  window.location.reload();
+  document.getElementById('startScreen').style.display = 'flex';
+  startButton.style.display = 'block';
 }
 
 // Iniciar juego
 function startGame() {
   startButton.style.display = 'none';
+  document.getElementById("startScreen").style.display = "none";
   gameRunning = true;
   playerPosition = 180;
   player.style.left = `${playerPosition}px`;
@@ -165,7 +180,7 @@ function startGame() {
   enemyBullets = [];
   playerBullets = [];
   enemiesRemaining = totalEnemies;
-
+  updateHUD();
   createEnemies();
 
   gameInterval = setInterval(() => {
@@ -178,12 +193,12 @@ function startGame() {
   }, 800);
 }
 
+// Eventos
 document.addEventListener('keydown', movePlayer);
-startButton.addEventListener('click', startGame);
+startButton.addEventListener("click", startGame);
 
+// Controles táctiles
+document.getElementById('leftBtn').addEventListener('touchstart', moveLeft);
+document.getElementById('rightBtn').addEventListener('touchstart', moveRight);
+document.getElementById('shootBtn').addEventListener('touchstart', shootBullet);
 
-document.getElementById("startButton").addEventListener("click", () => {
-    document.getElementById("startScreen").style.display = "none";
-    startGame(); // Asumiendo que esta función arranca el juego
-  });
-  

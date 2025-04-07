@@ -158,3 +158,18 @@ function updateEnemies(deltaTime) {
     }
 }
 
+function updateEnemyBullets(deltaTime) {
+    for (let i = enemyBullets.length - 1; i >= 0; i--) {
+        enemyBullets[i].y += enemyBullets[i].speed;
+        
+        // Dibujar bala enemiga
+        ctx.fillStyle = '#ff5555';
+        ctx.fillRect(enemyBullets[i].x - 3, enemyBullets[i].y - 3, 6, 6);
+        
+        // Eliminar balas fuera de pantalla
+        if (enemyBullets[i].y > canvas.height) {
+            enemyBullets.splice(i, 1);
+        }
+    }
+}
+

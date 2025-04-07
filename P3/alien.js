@@ -193,3 +193,50 @@ function enemyShoot() {
         speed: 5
     });
 }
+
+function checkCollisions() {
+    // Colisiones balas jugador - enemigos
+    for (let i = bullets.length - 1; i >= 0; i--) {
+        for (let j = enemies.length - 1; j >= 0; j--) {
+            if (checkCollision(bullets[i], enemies[j])) {
+                // Eliminar bala y enemigo
+                bullets.splice(i, 1);
+                enemies.splice(j, 1);
+                
+                // Aumentar puntuación
+                score += 10;
+                updateScore();
+                break;
+            }
+        }
+    } 
+    
+// Colisiones balas enemigas - jugador
+    for (let i = enemyBullets.length - 1; i >= 0; i--) {
+        if (checkCollision(enemyBullets[i], player)) {
+            enemyBullets.splice(i, 1);
+            lives--;
+            updateLives();
+            
+            if (lives <= 0) {
+                gameOver();
+            }
+            break;
+        }
+    }
+
+  // Colisiones enemigos - jugador
+  for (let i = enemies.length - 1; i >= 0; i--) {
+    if (checkCollision(enemies[i], player)) {
+        enemies.splice(i, 1);
+        lives--;
+        updateLives();
+        
+        if (lives <= 0) {
+            gameOver();
+        }
+        break;
+    }
+}
+}
+

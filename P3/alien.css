@@ -25,8 +25,8 @@ body {
   
   #gameContainer {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 800px;
+    height: 800px;
     margin: 0 auto;
     background-color: #111;
     border: 2px solid white;
@@ -36,24 +36,24 @@ body {
   #hud {
     display: flex;
     justify-content: space-between;
-    width: 400px;
+    width: 800px;
     margin: 10px auto;
     font-size: 18px;
   }
   
   .player {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     background: url('naveBuena.png') no-repeat center center;
     background-size: contain;
     position: absolute;
-    bottom: 20px;
+    bottom: 40px;
     left: 180px;
   }
   
   .enemy {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     background: url('images.jpeg') no-repeat center center;
     background-size: contain;
     position: absolute;

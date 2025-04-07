@@ -173,3 +173,23 @@ function updateEnemyBullets(deltaTime) {
     }
 }
 
+function spawnEnemy() {
+    enemies.push({
+        x: Math.random() * (canvas.width - 40) + 20,
+        y: -40,
+        width: 40,
+        height: 40,
+        speed: 1 + Math.random() * 2
+    });
+}
+
+function enemyShoot() {
+    if (enemies.length === 0) return;
+    
+    const shootingEnemy = enemies[Math.floor(Math.random() * enemies.length)];
+    enemyBullets.push({
+        x: shootingEnemy.x,
+        y: shootingEnemy.y + shootingEnemy.height / 2,
+        speed: 5
+    });
+}

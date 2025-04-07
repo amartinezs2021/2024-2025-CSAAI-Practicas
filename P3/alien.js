@@ -136,3 +136,25 @@ function updateBullets(deltaTime) {
         }
     }
 }
+
+function updateEnemies(deltaTime) {
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        enemies[i].y += enemies[i].speed * 0.5; // Movimiento lento hacia abajo
+        enemies[i].x += Math.sin(enemies[i].y * 0.05) * 2; // Movimiento sinusoidal
+        
+        // Dibujar enemigo
+        ctx.drawImage(
+            enemyImg,
+            enemies[i].x - enemies[i].width / 2,
+            enemies[i].y - enemies[i].height / 2,
+            enemies[i].width,
+            enemies[i].height
+        );
+        
+        // Eliminar enemigos fuera de pantalla
+        if (enemies[i].y > canvas.height + enemies[i].height) {
+            enemies.splice(i, 1);
+        }
+    }
+}
+

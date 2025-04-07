@@ -5,11 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juego de Alienígenas</title>
   <link rel="stylesheet" href="alien.css" />
+
+  <style>
+    body {
+        margin: 0;
+        padding:0;
+        background:url('fondoInicio.gif') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    #startScreen{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        height: 100%
+
+    }
+  </style>
 </head>
 <body>
   <div id="startScreen">
     <h1>Tripulacion Tuplar</h1>
-    <button id="startButton">Jugar</button>
+    <p>Bienvenido a la tripulación tuplar. Ha sido seleccionado para una misión</p>
+    <p>Debes eliminar a todos los enemigos de Pony express antes de que te eiliminen a ti, sino Swansea se enfadará mucho contigo</p>
+    <p>Es muy simple, muevete de derecha a izquierda con las flechas del teclado y pulsa espacio para disparar</p>
+    <p>Buena suerte Curly, siempre al servicio de Pony Express</p>
+    <button id="startButton">Emergency is comming</button>
   </div>
 
   <div id="hud">

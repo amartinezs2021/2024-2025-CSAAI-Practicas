@@ -298,3 +298,13 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+document.addEventListener('keyup', (e) => {
+    switch(e.key) {
+        case 'ArrowLeft':
+            player.isMovingLeft = false;
+            break;
+        case 'ArrowRight':
+            player.isMovingRight = false;
+            break;
+    }
+});

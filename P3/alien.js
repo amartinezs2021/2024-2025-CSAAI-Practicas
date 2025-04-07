@@ -122,3 +122,17 @@ function updatePlayer(deltaTime) {
     );
 }
 
+function updateBullets(deltaTime) {
+    for (let i = bullets.length - 1; i >= 0; i--) {
+        bullets[i].y -= bullets[i].speed;
+        
+        // Dibujar bala
+        ctx.fillStyle = '#00ffff';
+        ctx.fillRect(bullets[i].x - 2, bullets[i].y - 10, 4, 20);
+        
+        // Eliminar balas fuera de pantalla
+        if (bullets[i].y < 0) {
+            bullets.splice(i, 1);
+        }
+    }
+}

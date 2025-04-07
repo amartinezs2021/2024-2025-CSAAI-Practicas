@@ -104,3 +104,21 @@ if (enemies.length === 0 && enemyBullest.length === 0) {
 }
 requestAnimationFrame(gameLoop);
 
+function updatePlayer(deltaTime) {
+    // Movimiento del jugador
+    if (player.isMovingLeft) {
+        player.x = Math.max(player.width / 2, player.x - player.speed);
+    }
+    if (player.isMovingRight) {
+        player.x = Math.min(canvas.width - player.width / 2, player.x + player.speed);
+    }
+     // Dibujar jugador
+     ctx.drawImage(
+        playerImg,
+        player.x - player.width / 2,
+        player.y - player.height / 2,
+        player.width,
+        player.height
+    );
+}
+

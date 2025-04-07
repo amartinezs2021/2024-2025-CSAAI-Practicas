@@ -43,11 +43,13 @@ let enemies = [];
 let enemyBullets = [];
 
 // Iniciar juego
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', startGame);
+
+function startGame() {
     startScreen.style.display = 'none';
     gameContainer.style.display = 'block';
     initGame();
-});
+}
 
 function initGame() {
     gameRunning = true;
@@ -59,50 +61,52 @@ function initGame() {
     
     updateScore();
     updateLives();
-
-        // Iniciar bucle del juego
-        requestAnimationFrame(gameLoop);
-    }
+    
+    // Iniciar bucle del juego
+    lastTime = performance.now();
+    requestAnimationFrame(gameLoop);
+}
 
 function gameLoop(timestamp) {
     if (!gameRunning) return;
-        
+    
     const deltaTime = timestamp - lastTime;
     lastTime = timestamp;
-        
-// Limpiar canvas
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
- // Actualizar y dibujar elementos
-updatePlayer(deltaTime);
-updateBullets(deltaTime); 
-updateEnemies(deltaTime);
-updateEnemyBullets(deltaTime);
-        
-           // Generación de enemigos
+    
+    // Limpiar canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Actualizar y dibujar elementos
+    updatePlayer(deltaTime);
+    updateBullets(deltaTime);
+    updateEnemies(deltaTime);
+    updateEnemyBullets(deltaTime);
+    
+    // Generación de enemigos
     enemySpawnTimer += deltaTime;
     if (enemySpawnTimer > 1000) { // Cada segundo
         spawnEnemy();
         enemySpawnTimer = 0;
     }
-}  
-
-//Disparos enemigos
-enemyShootTimer += deltaTime;
-if (enemyShootTimer > 1500 && enemies.length > 0) {
-    enemyShoot();
-    enemyShootTimer = 0;
+    
+    // Disparos enemigos
+    enemyShootTimer += deltaTime;
+    if (enemyShootTimer > 1500 && enemies.length > 0) { // Cada 1.5 segundos
+        enemyShoot();
+        enemyShootTimer = 0;
+    }
+    
+    // Detección de colisiones
+    checkCollisions();
+    
+    // Comprobar victoria (cuando no hay más enemigos ni balas enemigas)
+    if (enemies.length === 0 && enemyBullets.length === 0) {
+        victory();
+        return;
+    }
+    
+    requestAnimationFrame(gameLoop);
 }
-
-//Detencion de colisiones
-checkCollisions();
-
-//Comprobar victoria
-if (enemies.length === 0 && enemyBullest.length === 0) {
-    victory();
-    return;
-}
-requestAnimationFrame(gameLoop);
 
 function updatePlayer(deltaTime) {
     // Movimiento del jugador
@@ -112,8 +116,9 @@ function updatePlayer(deltaTime) {
     if (player.isMovingRight) {
         player.x = Math.min(canvas.width - player.width / 2, player.x + player.speed);
     }
-     // Dibujar jugador
-     ctx.drawImage(
+    
+    // Dibujar jugador
+    ctx.drawImage(
         playerImg,
         player.x - player.width / 2,
         player.y - player.height / 2,
@@ -209,9 +214,9 @@ function checkCollisions() {
                 break;
             }
         }
-    } 
+    }
     
-// Colisiones balas enemigas - jugador
+    // Colisiones balas enemigas - jugador
     for (let i = enemyBullets.length - 1; i >= 0; i--) {
         if (checkCollision(enemyBullets[i], player)) {
             enemyBullets.splice(i, 1);
@@ -224,20 +229,20 @@ function checkCollisions() {
             break;
         }
     }
-
-  // Colisiones enemigos - jugador
-  for (let i = enemies.length - 1; i >= 0; i--) {
-    if (checkCollision(enemies[i], player)) {
-        enemies.splice(i, 1);
-        lives--;
-        updateLives();
-        
-        if (lives <= 0) {
-            gameOver();
+    
+    // Colisiones enemigos - jugador
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        if (checkCollision(enemies[i], player)) {
+            enemies.splice(i, 1);
+            lives--;
+            updateLives();
+            
+            if (lives <= 0) {
+                gameOver();
+            }
+            break;
         }
-        break;
     }
-}
 }
 
 function checkCollision(obj1, obj2) {
@@ -258,13 +263,15 @@ function updateLives() {
 function gameOver() {
     gameRunning = false;
     alert(`¡Game Over! Puntuación final: ${score}`);
-    location.reload();
+    setTimeout(() => {
+        location.reload();
+    }, 1000);
 }
 
 function victory() {
     gameRunning = false;
     victorySound.play();
-
+    
     const victoryMessage = document.createElement('div');
     victoryMessage.id = 'victoryMessage';
     victoryMessage.innerHTML = '¡VICTORIA!<br>Puntuación final: ' + score;
@@ -307,4 +314,9 @@ document.addEventListener('keyup', (e) => {
             player.isMovingRight = false;
             break;
     }
+});
+
+// Precarga de imágenes
+window.addEventListener('load', () => {
+    // Las imágenes ya están definidas al inicio
 });

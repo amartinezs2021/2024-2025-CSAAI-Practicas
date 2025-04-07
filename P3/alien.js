@@ -1,10 +1,12 @@
 const gameContainer = document.getElementById('gameContainer');
 const startButton = document.getElementById('startButton');
+const scoreDisplay = document.getElementById('score');
+const livesDisplay = document.getElementById('lives');
 const player = document.createElement('div');
 player.classList.add('player');
 gameContainer.appendChild(player);
 
-let playerPosition = 180;
+let playerPosition = 280;
 let enemies = [];
 let enemyBullets = [];
 let playerBullets = [];
@@ -27,7 +29,7 @@ function createEnemies() {
   for (let i = 0; i < totalEnemies; i++) {
     const enemy = document.createElement('div');
     enemy.classList.add('enemy');
-    enemy.style.left = `${i * 35 + 10}px`;
+    enemy.style.left = `${i * 55 + 10}px`;
     enemy.style.top = '80px';
     gameContainer.appendChild(enemy);
     enemies.push(enemy);
@@ -40,7 +42,7 @@ function movePlayer(event) {
   if (event.key === 'ArrowLeft') {
     playerPosition = Math.max(0, playerPosition - 10);
   } else if (event.key === 'ArrowRight') {
-    playerPosition = Math.min(370, playerPosition + 10);
+    playerPosition = Math.min(560, playerPosition + 10);
   } else if (event.code === 'Space') {
     shootBullet();
   }
@@ -53,8 +55,8 @@ function shootBullet() {
 
   const bullet = document.createElement('div');
   bullet.classList.add('bullet');
-  bullet.style.left = `${playerPosition + 12}px`;
-  bullet.style.top = '350px';
+  bullet.style.left = `${playerPosition + 17}px`;
+  bullet.style.top = '550px';
   gameContainer.appendChild(bullet);
   playerBullets.push(bullet);
 }
@@ -73,7 +75,9 @@ function movePlayerBullets() {
 
     for (let j = enemies.length - 1; j >= 0; j--) {
       const enemy = enemies[j];
-      if (isColliding(bullet, enemy)) {
+      if (
+        Math.abs(parseInt(enemy.style.left) - parseInt(bullet.style.left)) < 30 &&
+        Math.abs(parseInt(enemy.style.top) - top) < 30) {
         gameContainer.removeChild(enemy);
         gameContainer.removeChild(bullet);
         enemies.splice(j, 1);
@@ -100,8 +104,8 @@ function moveEnemyBullets() {
     bullet.style.top = `${top + 5}px`;
 
     if (
-      Math.abs(parseInt(bullet.style.left) - playerPosition - 15) < 20 &&
-      top > 340
+      Math.abs(parseInt(bullet.style.left) - playerPosition - 20) < 30 &&
+      Math.abs(top -560) < 30
     ) {
       gameContainer.removeChild(bullet);
       enemyBullets.splice(i, 1);
@@ -111,7 +115,7 @@ function moveEnemyBullets() {
       continue;
     }
 
-    if (top > 400 && bullet.parentNode) {
+    if (top > 600 && bullet.parentNode) {
       gameContainer.removeChild(bullet);
       enemyBullets.splice(i, 1);
     }
@@ -150,11 +154,11 @@ function endGame(message) {
 }
 
 function startGame() {
+  startButton.style.display = 'none';
   document.getElementById("startScreen").style.display = "none";
   gameRunning = true;
-  playerPosition = 180;
+  playerPosition = 280;
   player.style.left = `${playerPosition}px`;
-  player.style.bottom = '0px';
   score = 0;
   lives = 3;
   enemies = [];

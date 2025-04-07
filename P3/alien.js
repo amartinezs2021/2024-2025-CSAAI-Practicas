@@ -27,8 +27,8 @@ function createEnemies() {
   for (let i = 0; i < totalEnemies; i++) {
     const enemy = document.createElement('div');
     enemy.classList.add('enemy');
-    enemy.style.left = `${i * 60 + 20}px`;
-    enemy.style.top = '100px';
+    enemy.style.left = `${i * 35 + 10}px`;
+    enemy.style.top = '80px';
     gameContainer.appendChild(enemy);
     enemies.push(enemy);
   }
@@ -40,7 +40,7 @@ function movePlayer(event) {
   if (event.key === 'ArrowLeft') {
     playerPosition = Math.max(0, playerPosition - 10);
   } else if (event.key === 'ArrowRight') {
-    playerPosition = Math.min(360, playerPosition + 10);
+    playerPosition = Math.min(370, playerPosition + 10);
   } else if (event.code === 'Space') {
     shootBullet();
   }
@@ -62,7 +62,6 @@ function shootBullet() {
 function isColliding(el1, el2) {
   const r1 = el1.getBoundingClientRect();
   const r2 = el2.getBoundingClientRect();
-
   return !(r1.top > r2.bottom || r1.bottom < r2.top || r1.right < r2.left || r1.left > r2.right);
 }
 
@@ -155,7 +154,7 @@ function startGame() {
   gameRunning = true;
   playerPosition = 180;
   player.style.left = `${playerPosition}px`;
-  player.style.bottom = '20px';
+  player.style.bottom = '0px';
   score = 0;
   lives = 3;
   enemies = [];

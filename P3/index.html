@@ -2,53 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulpar vs Aliens</title>
+    <title>Juego de Naves</title>
     <link rel="stylesheet" href="alien.css">
-    <style>
-        #startScreen {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('fondoInicio.gif') no-repeat center center;
-            background-size: cover;
-            z-index: 10;   
-        }
-    </style>    
 </head>
 <body>
-    <div id="startScreen">
-        <h1>Bienvenido</h1>
-        <p>"Eres el nuevo integrante de la tripulación Tulpar, pero pony express  se ha salido de control, destruye a todos los enemigos antes de que ellos te destruyan a ti".</p>
-        <button id="startButton">JUGAR</button>
-    </div>
+    <h1>JUEGO DE NAVES</h1>
+    <p>Bienvenido al juego de naves. Usa las flechas izquierda y derecha para moverte. Presiona la tecla espacio para disparar. Elimina a todos los enemigos para ganar. Tienes 3 vidas. ¡Buena suerte!</p>
 
-    <div id="gameContainer">
-        <canvas id="gameCanvas"></canvas>
-        <div id="gameInfo">
-            <div id="scoreDisplay">Puntos: 0</div>
-            <div id="livesDisplay">Vidas: 3</div>
-        </div>
-    </div>
+    <button id="startButton">Jugar</button>
 
-    <audio id="victorySound" src="sonido.mp3" preload="auto"></audio>
-    
+    <div id="gameContainer"></div>
+
+    <!-- Sonido del disparo -->
+    <audio id="shootSound" src="sonido.mp3" preload="auto"></audio>
+
+    <!-- Script del juego -->
     <script src="alien.js"></script>
-    <script>
-        document.getElementById("startButton").addEventListener("click", function() {
-            document.getElementById("startScreen").style.display = "none";
-            document.getElementById("gameContainer").style.display = "block";
-
-            // Llamar a función de inicio si existe
-            if (typeof startGame === "function") {
-                startGame();
-            }
-        });
-    </script>
 </body>
 </html>
+

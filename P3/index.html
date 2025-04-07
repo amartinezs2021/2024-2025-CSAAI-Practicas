@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Juego de Naves</title>
-    <link rel="stylesheet" href="alien.css">
+  <meta charset="UTF-8" />
+  <title>Juego de Naves</title>
+  <link rel="stylesheet" href="alien.css" />
 </head>
 <body>
-    <h1>JUEGO DE NAVES</h1>
-    <p>Bienvenido al juego de naves. Usa las flechas izquierda y derecha para moverte. Presiona la tecla espacio para disparar. Elimina a todos los enemigos para ganar. Tienes 3 vidas. ¡Buena suerte!</p>
 
-    <button id="startButton">Jugar</button>
+  <!-- Pantalla de inicio -->
+  <div id="startScreen">
+    <div class="start-content">
+      <p>
+        Bienvenido a la tripulacion Tuplar. Pony express te ha contratado para una mision importante.<br />
+        Presiona la tecla espacio para disparar. Elimina a todos los enemigos para ganar.<br />
+        Tienes 3 vidas. ¡Buena suerte!
+      </p>
+      <button id="startButton">Jugar</button>
+    </div>
+  </div>
 
-    <div id="gameContainer"></div>
+  <!-- Contenedor del juego -->
+  <div id="gameContainer"></div>
 
-    <!-- Sonido del disparo -->
-    <audio id="shootSound" src="sonido.mp3" preload="auto"></audio>
+  <!-- Sonido del disparo -->
+  <audio id="shootSound" src="sonido.mp3" preload="auto"></audio>
 
-    <!-- Script del juego -->
-    <script src="alien.js"></script>
+  <!-- Script del juego -->
+  <script src="alien.js"></script>
 </body>
 </html>
+
 

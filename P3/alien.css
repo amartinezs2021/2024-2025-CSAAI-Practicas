@@ -14,6 +14,15 @@
     z-index: 10;
   }
   
+  .start-content {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+    font-size: 20px;
+  }
+  
   #startButton {
     padding: 20px 40px;
     font-size: 24px;
@@ -22,6 +31,18 @@
     border: 2px solid white;
     cursor: pointer;
     border-radius: 10px;
+  }
+  
+  /* HUD */
+  #hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+    z-index: 5;
+    display: flex;
+    gap: 20px;
   }
   
   /* Contenedor del juego */
@@ -33,7 +54,7 @@
     overflow: hidden;
   }
   
-  /* Nave del jugador */
+  /* Jugador */
   .player {
     width: 50px;
     height: 50px;
@@ -54,19 +75,45 @@
   }
   
   /* Disparos */
-  .bullet, .enemy-bullet {
+  .bullet, .enemyBullet {
     width: 5px;
     height: 15px;
     background-color: white;
     position: absolute;
   }
-
-  .start-content {
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 40px;
-    border-radius: 20px;
-    color: white;
-    font-size: 20px;
+  
+  /* Controles táctiles */
+  #touchControls {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 15;
   }
   
+  #touchControls button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 30px;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    #hud {
+      font-size: 16px;
+    }
+  
+    .start-content {
+      font-size: 16px;
+      padding: 20px;
+    }
+  
+    #touchControls {
+      display: flex;
+    }
+  }

@@ -1,4 +1,3 @@
-// Elementos principales
 const gameContainer = document.getElementById('gameContainer');
 const startButton = document.getElementById('startButton');
 const player = document.createElement('div');
@@ -17,70 +16,65 @@ let gameRunning = false;
 const totalEnemies = 10;
 let enemiesRemaining = totalEnemies;
 
-const shootSound = document.getElementById('shootSound');
+const shootSound = new Audio('sonido.mp3');
 
-// Crear enemigos
+function updateHUD() {
+  document.getElementById('score').innerText = `Puntuación: ${score}`;
+  document.getElementById('lives').innerText = `Vidas: ${lives}`;
+}
+
 function createEnemies() {
   for (let i = 0; i < totalEnemies; i++) {
     const enemy = document.createElement('div');
     enemy.classList.add('enemy');
-    enemy.style.left = `${i * 40 + 20}px`;
-    enemy.style.top = '20px';
+    enemy.style.left = `${i * 60 + 20}px`;
+    enemy.style.top = '100px';
     gameContainer.appendChild(enemy);
     enemies.push(enemy);
   }
 }
 
-// Mover jugador
 function movePlayer(event) {
   if (!gameRunning) return;
 
   if (event.key === 'ArrowLeft') {
-    moveLeft();
+    playerPosition = Math.max(0, playerPosition - 10);
   } else if (event.key === 'ArrowRight') {
-    moveRight();
+    playerPosition = Math.min(360, playerPosition + 10);
   } else if (event.code === 'Space') {
     shootBullet();
   }
-}
-
-function moveLeft() {
-  playerPosition = Math.max(0, playerPosition - 10);
   player.style.left = `${playerPosition}px`;
 }
 
-function moveRight() {
-  playerPosition = Math.min(360, playerPosition + 10);
-  player.style.left = `${playerPosition}px`;
-}
-
-// Disparo
 function shootBullet() {
   shootSound.currentTime = 0;
   shootSound.play();
 
   const bullet = document.createElement('div');
   bullet.classList.add('bullet');
-  bullet.style.left = `${playerPosition + 15}px`;
-  bullet.style.top = '360px';
+  bullet.style.left = `${playerPosition + 12}px`;
+  bullet.style.top = '350px';
   gameContainer.appendChild(bullet);
   playerBullets.push(bullet);
 }
 
-// Movimiento de balas del jugador
+function isColliding(el1, el2) {
+  const r1 = el1.getBoundingClientRect();
+  const r2 = el2.getBoundingClientRect();
+
+  return !(r1.top > r2.bottom || r1.bottom < r2.top || r1.right < r2.left || r1.left > r2.right);
+}
+
 function movePlayerBullets() {
   for (let i = playerBullets.length - 1; i >= 0; i--) {
     const bullet = playerBullets[i];
     let top = parseInt(bullet.style.top);
     bullet.style.top = `${top - 10}px`;
 
-    // Colisión con enemigos
     for (let j = enemies.length - 1; j >= 0; j--) {
       const enemy = enemies[j];
-      if (
-        Math.abs(parseInt(enemy.style.left) - parseInt(bullet.style.left)) < 20 &&
-        Math.abs(parseInt(enemy.style.top) - top) < 20
-      ) {
+      if (isColliding(bullet, enemy)) {
         gameContainer.removeChild(enemy);
         gameContainer.removeChild(bullet);
         enemies.splice(j, 1);
@@ -100,7 +94,6 @@ function movePlayerBullets() {
   }
 }
 
-// Movimiento balas enemigas
 function moveEnemyBullets() {
   for (let i = enemyBullets.length - 1; i >= 0; i--) {
     const bullet = enemyBullets[i];
@@ -109,7 +102,7 @@ function moveEnemyBullets() {
 
     if (
       Math.abs(parseInt(bullet.style.left) - playerPosition - 15) < 20 &&
-      Math.abs(top - 360) < 20
+      top > 340
     ) {
       gameContainer.removeChild(bullet);
       enemyBullets.splice(i, 1);
@@ -126,7 +119,6 @@ function moveEnemyBullets() {
   }
 }
 
-// Disparos enemigos
 function enemyShoot() {
   if (enemies.length === 0) return;
   const shooter = enemies[Math.floor(Math.random() * enemies.length)];
@@ -138,13 +130,6 @@ function enemyShoot() {
   enemyBullets.push(bullet);
 }
 
-// Actualizar HUD
-function updateHUD() {
-  document.getElementById('score').innerText = `Puntos: ${score}`;
-  document.getElementById('lives').innerText = `Vidas: ${lives}`;
-}
-
-// Comprobar victoria/derrota
 function checkVictory() {
   if (enemiesRemaining === 0) {
     endGame(`¡Victoria! Puntuación: ${score}`);
@@ -157,23 +142,20 @@ function checkDefeat() {
   }
 }
 
-// Terminar juego
 function endGame(message) {
   clearInterval(gameInterval);
   clearInterval(enemyFireInterval);
   gameRunning = false;
   alert(message);
-  document.getElementById('startScreen').style.display = 'flex';
-  startButton.style.display = 'block';
+  window.location.reload();
 }
 
-// Iniciar juego
 function startGame() {
-  startButton.style.display = 'none';
   document.getElementById("startScreen").style.display = "none";
   gameRunning = true;
   playerPosition = 180;
   player.style.left = `${playerPosition}px`;
+  player.style.bottom = '20px';
   score = 0;
   lives = 3;
   enemies = [];
@@ -181,6 +163,7 @@ function startGame() {
   playerBullets = [];
   enemiesRemaining = totalEnemies;
   updateHUD();
+
   createEnemies();
 
   gameInterval = setInterval(() => {
@@ -193,12 +176,6 @@ function startGame() {
   }, 800);
 }
 
-// Eventos
 document.addEventListener('keydown', movePlayer);
-startButton.addEventListener("click", startGame);
-
-// Controles táctiles
-document.getElementById('leftBtn').addEventListener('touchstart', moveLeft);
-document.getElementById('rightBtn').addEventListener('touchstart', moveRight);
-document.getElementById('shootBtn').addEventListener('touchstart', shootBullet);
+startButton.addEventListener('click', startGame);
 

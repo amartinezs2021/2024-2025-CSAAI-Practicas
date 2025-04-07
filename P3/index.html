@@ -2,42 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Juego de Naves</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego de Alienígenas</title>
   <link rel="stylesheet" href="alien.css" />
 </head>
 <body>
-
-  <!-- Pantalla de inicio -->
   <div id="startScreen">
-    <div class="start-content">
-      <p>
-        Bienvenido a la tripulación Tuplar. Pony express te ha contratado para una misión importante.<br />
-        Presiona la tecla espacio o el botón disparar. Elimina a todos los enemigos para ganar.<br />
-        Tienes 3 vidas. ¡Buena suerte!
-      </p>
-      <button id="startButton">Jugar</button>
-    </div>
+    <h1>Tripulacion Tuplar</h1>
+    <button id="startButton">Jugar</button>
   </div>
 
-  <!-- HUD -->
   <div id="hud">
-    <span id="score">Puntos: 0</span>
+    <span id="score">Puntuación: 0</span>
     <span id="lives">Vidas: 3</span>
   </div>
 
-  <!-- Contenedor del juego -->
   <div id="gameContainer"></div>
-
-  <!-- Sonido -->
-  <audio id="shootSound" src="sonido.mp3" preload="auto"></audio>
-
-  <!-- Controles táctiles -->
-  <div id="touchControls">
-    <button id="leftBtn">◀</button>
-    <button id="shootBtn">🔫</button>
-    <button id="rightBtn">▶</button>
-  </div>
 
   <script src="alien.js"></script>
 </body>

@@ -180,3 +180,10 @@ function startGame() {
 
 document.addEventListener('keydown', movePlayer);
 startButton.addEventListener('click', startGame);
+
+
+document.getElementById("startButton").addEventListener("click", () => {
+    document.getElementById("startScreen").style.display = "none";
+    startGame(); // Asumiendo que esta función arranca el juego
+  });
+  

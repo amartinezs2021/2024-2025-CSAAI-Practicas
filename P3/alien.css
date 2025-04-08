@@ -164,3 +164,20 @@ body {
   height: 80px;
 
 }
+
+@media (max-width: 768px) {
+  #gameContainer {
+      width: 100vw;
+      height: 70vh;
+  }
+  #hud {
+      flex-direction: column; /* En móviles se coloca verticalmente */
+      text-align: center;
+  }
+  #mobileControls button {
+      font-size: 5vw;
+      width: 18vw;
+      height: 18vw;
+  }
+}
+

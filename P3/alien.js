@@ -165,12 +165,30 @@ function checkDefeat() {
   }
 }
 
-function endGame(message) {
+function endGame() {
   clearInterval(gameInterval);
   clearInterval(enemyFireInterval);
   gameRunning = false;
-  alert(message);
-  window.location.reload();
+  
+  const gameOverMessage = document.getElementById('gameOverMessage');
+  const messageTitle = document.getElementById('messageTitle');
+  const messageText = document.getElementById('messageText');
+  
+  if (lives <= 0) {
+      messageTitle.textContent = "¡Misión fallida!";
+      messageTitle.style.color = "#ff3333";
+      messageText.textContent = `Swansea está decepcionado contigo. Puntuación: ${score}`;
+  } else {
+      messageTitle.textContent = "¡Misión cumplida!";
+      messageTitle.style.color = "#4CAF50";
+      messageText.textContent = `Has servido bien a Pony Express. Puntuación: ${score}`;
+  }
+  
+  gameOverMessage.style.display = "block";
+  document.getElementById('hud').style.display = "none";
+  gameContainer.style.display = "none";
+  document.body.style.background = "url('Descent_into_Madness.gif') no-repeat center center fixed";
+  document.body.style.backgroundSize = "cover";
 }
 
 function startGame() {

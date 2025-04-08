@@ -175,46 +175,79 @@ function endGame() {
   const messageText = document.getElementById('messageText');
   
   if (lives <= 0) {
-      messageTitle.textContent = "¡Misión fallida!";
+      // Mensaje y fondo para derrota
+      messageTitle.textContent = "¡Derrota!";
       messageTitle.style.color = "#ff3333";
-      messageText.textContent = `Swansea está decepcionado contigo. Puntuación: ${score}`;
+      messageText.textContent = `Swansea está enfadado contigo. Puntuación: ${score}`;
+      document.body.style.background = "url('fondoInicio.gif') no-repeat center center fixed";
   } else {
-      messageTitle.textContent = "¡Misión cumplida!";
+      // Mensaje y fondo para victoria
+      messageTitle.textContent = "¡Victoria!";
       messageTitle.style.color = "#4CAF50";
-      messageText.textContent = `Has servido bien a Pony Express. Puntuación: ${score}`;
+      messageText.textContent = `¡Has ayudado a Pony Express! Puntuación: ${score}`;
+      document.body.style.background = "url('ganar.webp') no-repeat center center fixed";
   }
   
+  document.body.style.backgroundSize = "cover";
   gameOverMessage.style.display = "block";
   document.getElementById('hud').style.display = "none";
   gameContainer.style.display = "none";
-  document.body.style.background = "url('Descent_into_Madness.gif') no-repeat center center fixed";
-  document.body.style.backgroundSize = "cover";
 }
 
 function startGame() {
-  startButton.style.display = 'none';
-  document.getElementById("startScreen").style.display = "none";
-  gameRunning = true;
-  playerPosition = 280;
-  player.style.left = `${playerPosition}px`;
+  // Limpiar elementos existentes del juego
+  while (gameContainer.firstChild) {
+      gameContainer.removeChild(gameContainer.firstChild);
+  }
+
+  // Reiniciar variables del juego
+  playerBullets = [];
+  enemyBullets = [];
+  enemies = [];
+  enemiesRemaining = totalEnemies;
   score = 0;
   lives = 3;
-  enemies = [];
-  enemyBullets = [];
-  playerBullets = [];
-  enemiesRemaining = totalEnemies;
+  gameRunning = true;
+  playerPosition = 280;
+
+  // Restablecer fondo inicial
+  document.body.style.background = "url('fondoInicio.gif') no-repeat center center fixed";
+  document.body.style.backgroundSize = "cover";
+
+  // Ocultar mensaje de fin de juego si está visible
+  document.getElementById('gameOverMessage').style.display = "none";
+
+  // Mostrar elementos del juego
+  document.getElementById('hud').style.display = "block";
+  gameContainer.style.display = "block";
+
+  // Crear y posicionar al jugador
+  player.style.left = `${playerPosition}px`;
+  gameContainer.appendChild(player);
+
+  // Actualizar HUD
   updateHUD();
 
+  // Crear enemigos
   createEnemies();
 
+  // Limpiar intervalos anteriores si existen
+  if (gameInterval) clearInterval(gameInterval);
+  if (enemyFireInterval) clearInterval(enemyFireInterval);
+
+  // Establecer intervalos del juego
   gameInterval = setInterval(() => {
-    movePlayerBullets();
-    moveEnemyBullets();
+      if (gameRunning) {
+          movePlayerBullets();
+          moveEnemyBullets();
+      }
   }, 100);
 
   enemyFireInterval = setInterval(() => {
-    enemyShoot();
-  }, 1500);
+      if (gameRunning && enemies.length > 0) {
+          enemyShoot();
+      }
+  }, 1500); // Frecuencia de disparo enemigo (1.5 segundos)
 }
 
 document.addEventListener('keydown', movePlayer);

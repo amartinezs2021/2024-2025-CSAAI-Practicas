@@ -273,3 +273,13 @@ if (isMobile) {
     // Ocultar los controles táctiles en escritorio
     document.getElementById('mobileControls').style.display = 'none';
 }
+
+const backgroundMusic = document.getElementById('backgroundMusic');
+
+// Reproducir música al iniciar el juego
+function startGame() {
+    backgroundMusic.volume = 0.5; // Ajustar el volumen
+    backgroundMusic.play().catch(error => {
+        console.error("La música no se pudo reproducir automáticamente. Interacción del usuario requerida.");
+    });
+}

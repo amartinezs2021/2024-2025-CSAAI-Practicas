@@ -73,54 +73,22 @@ body {
     position: absolute;
   }
 
-  .explosion {
-    width: 50px;
-    height: 50px;
-    background: url('explosion.webp') no-repeat center center;
-    background-size: contain;
-    position: absolute;
-    z-index: 10;
-    animation: fadeOut 1.5s forwards;
-}
-
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        transform: scale(1.5);
-    }
-}
-
-#gameOverMessage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 20px 40px;
-  border: 2px solid white;
-  border-radius: 10px;
-  text-align: center;
-  z-index: 100;
-  display: none;
-}
-
-#gameOverMessage h2 {
-  margin-top: 0;
-  color: #ffcc00;
-}
-
-#restartButton {
-  padding: 10px 20px;
-  margin-top: 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#restartButton:hover {
-  background-color: #45a049;
-}
+  #gameOverMessage h2 {
+    margin-top: 0;
+    color: #ffcc00;
+  }
+  
+  #restartButton {
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #restartButton:hover {
+    background-color: #45a049;
+  }  

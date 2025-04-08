@@ -143,3 +143,22 @@ body {
       transform: scale(1.5);
   }
 }
+
+#mobileControls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+#mobileControls button {
+  font-size: 24px;
+  padding: 10px 20px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}

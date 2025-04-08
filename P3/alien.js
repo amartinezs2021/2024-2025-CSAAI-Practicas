@@ -256,3 +256,28 @@ startButton.addEventListener('click', startGame);
 document.getElementById('restartButton').addEventListener('click', function() {
   startGame();
 });
+
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (isMobile) {
+    // Agregar botones táctiles para mover y disparar
+    const controls = document.createElement('div');
+    controls.id = 'mobileControls';
+    controls.innerHTML = `
+        <button id="leftButton">←</button>
+        <button id="fireButton">🔥</button>
+        <button id="rightButton">→</button>
+    `;
+    document.body.appendChild(controls);
+
+    // Manejar eventos táctiles
+    document.getElementById('leftButton').addEventListener('touchstart', () => movePlayer({ key: 'ArrowLeft' }));
+    document.getElementById('rightButton').addEventListener('touchstart', () => movePlayer({ key: 'ArrowRight' }));
+    document.getElementById('fireButton').addEventListener('touchstart', shootBullet);
+} else {
+    // Ocultar controles móviles en escritorio
+    const mobileControls = document.getElementById('mobileControls');
+    if (mobileControls) {
+        mobileControls.style.display = 'none';
+    }
+}

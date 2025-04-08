@@ -37,18 +37,19 @@ function createEnemies() {
   }
 }
 
-function movePlayer(event) {
+function movePlayer(action) {
   if (!gameRunning) return;
 
-  if (event.key === 'ArrowLeft') {
-    playerPosition = Math.max(0, playerPosition - 10);
-  } else if (event.key === 'ArrowRight') {
-    playerPosition = Math.min(560, playerPosition + 10);
-  } else if (event.code === 'Space') {
-    shootBullet();
+  if (action.key === 'ArrowLeft' || action === 'left') {
+      playerPosition = Math.max(0, playerPosition - 10);
+  } else if (action.key === 'ArrowRight' || action === 'right') {
+      playerPosition = Math.min(560, playerPosition + 10);
+  } else if (action.code === 'Space' || action === 'fire') {
+      shootBullet();
   }
   player.style.left = `${playerPosition}px`;
 }
+
 
 function shootBullet() {
   shootSound.currentTime = 0;
@@ -257,27 +258,18 @@ document.getElementById('restartButton').addEventListener('click', function() {
   startGame();
 });
 
-const isMobile = window.matchMedia("(max-width: 1000px)").matches;
+// Detectar si el dispositivo es móvil
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 if (isMobile) {
-    // Agregar botones táctiles para mover y disparar
-    const controls = document.createElement('div');
-    controls.id = 'mobileControls';
-    controls.innerHTML = `
-        <button id="leftButton">←</button>
-        <button id="fireButton">💣</button>
-        <button id="rightButton">→</button>
-    `;
-    document.body.appendChild(controls);
+    // Mostrar los controles táctiles
+    document.getElementById('mobileControls').style.display = 'flex';
 
-    // Manejar eventos táctiles
-    document.getElementById('leftButton').addEventListener('touchstart', () => movePlayer({ key: 'ArrowLeft' }));
-    document.getElementById('rightButton').addEventListener('touchstart', () => movePlayer({ key: 'ArrowRight' }));
-    document.getElementById('fireButton').addEventListener('touchstart', shootBullet);
+    // Agregar eventos táctiles para mover y disparar
+    document.getElementById('leftButton').addEventListener('touchstart', () => movePlayer('left'));
+    document.getElementById('rightButton').addEventListener('touchstart', () => movePlayer('right'));
+    document.getElementById('fireButton').addEventListener('touchstart', () => movePlayer('fire'));
 } else {
-    // Ocultar controles móviles en escritorio
-    const mobileControls = document.getElementById('mobileControls');
-    if (mobileControls) {
-        mobileControls.style.display = 'none';
-    }
+    // Ocultar los controles táctiles en escritorio
+    document.getElementById('mobileControls').style.display = 'none';
 }

@@ -257,7 +257,7 @@ document.getElementById('restartButton').addEventListener('click', function() {
   startGame();
 });
 
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
+const isMobile = window.matchMedia("(max-width: 1000px)").matches;
 
 if (isMobile) {
     // Agregar botones táctiles para mover y disparar
@@ -265,7 +265,7 @@ if (isMobile) {
     controls.id = 'mobileControls';
     controls.innerHTML = `
         <button id="leftButton">←</button>
-        <button id="fireButton">🔥</button>
+        <button id="fireButton">💣</button>
         <button id="rightButton">→</button>
     `;
     document.body.appendChild(controls);

@@ -179,7 +179,7 @@ function endGame() {
       messageTitle.textContent = "¡Derrota!";
       messageTitle.style.color = "#ff3333";
       messageText.textContent = `Swansea está enfadado contigo. Puntuación: ${score}`;
-      document.body.style.background = "url('fondoInicio.gif') no-repeat center center fixed";
+      document.body.style.background = "url('Descent_into_Madness.gif') no-repeat center center fixed";
   } else {
       // Mensaje y fondo para victoria
       messageTitle.textContent = "¡Victoria!";

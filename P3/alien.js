@@ -196,7 +196,7 @@ function startGame() {
 
   enemyFireInterval = setInterval(() => {
     enemyShoot();
-  }, 800);
+  }, 1500);
 }
 
 document.addEventListener('keydown', movePlayer);

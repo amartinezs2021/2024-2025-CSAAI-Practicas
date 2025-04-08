@@ -195,61 +195,75 @@ function endGame() {
   gameContainer.style.display = "none";
 }
 
+const backgroundMusic = document.getElementById('backgroundMusic'); // Música de fondo
+
 function startGame() {
-  // Limpiar elementos existentes del juego
-  while (gameContainer.firstChild) {
-      gameContainer.removeChild(gameContainer.firstChild);
-  }
+    // Iniciar música de fondo
+    try {
+        backgroundMusic.volume = 0.5; // Ajustar el volumen (opcional)
+        backgroundMusic.loop = true; // Reproducir en bucle
+        backgroundMusic.play().catch(error => {
+            console.error("No se pudo reproducir la música automáticamente.");
+        });
+    } catch (error) {
+        console.error("Error al iniciar la música:", error);
+    }
 
-  // Reiniciar variables del juego
-  playerBullets = [];
-  enemyBullets = [];
-  enemies = [];
-  enemiesRemaining = totalEnemies;
-  score = 0;
-  lives = 3;
-  gameRunning = true;
-  playerPosition = 280;
+    // Limpiar elementos existentes del juego
+    while (gameContainer.firstChild) {
+        gameContainer.removeChild(gameContainer.firstChild);
+    }
 
-  // Restablecer fondo inicial
-  document.body.style.background = "url('fondoInicio.gif') no-repeat center center fixed";
-  document.body.style.backgroundSize = "cover";
+    // Reiniciar variables del juego
+    playerBullets = [];
+    enemyBullets = [];
+    enemies = [];
+    enemiesRemaining = totalEnemies;
+    score = 0;
+    lives = 3;
+    gameRunning = true;
+    playerPosition = 280;
 
-  // Ocultar mensaje de fin de juego si está visible
-  document.getElementById('gameOverMessage').style.display = "none";
+    // Restablecer fondo inicial
+    document.body.style.background = "url('fondoInicio.gif') no-repeat center center fixed";
+    document.body.style.backgroundSize = "cover";
 
-  // Mostrar elementos del juego
-  document.getElementById('hud').style.display = "block";
-  gameContainer.style.display = "block";
+    // Ocultar mensaje de fin de juego si está visible
+    document.getElementById('gameOverMessage').style.display = "none";
 
-  // Crear y posicionar al jugador
-  player.style.left = `${playerPosition}px`;
-  gameContainer.appendChild(player);
+    // Mostrar elementos del juego
+    document.getElementById('hud').style.display = "block";
+    gameContainer.style.display = "block";
 
-  // Actualizar HUD
-  updateHUD();
+    // Crear y posicionar al jugador
+    player.style.left = `${playerPosition}px`;
+    gameContainer.appendChild(player);
 
-  // Crear enemigos
-  createEnemies();
+    // Actualizar HUD
+    updateHUD();
 
-  // Limpiar intervalos anteriores si existen
-  if (gameInterval) clearInterval(gameInterval);
-  if (enemyFireInterval) clearInterval(enemyFireInterval);
+    // Crear enemigos
+    createEnemies();
 
-  // Establecer intervalos del juego
-  gameInterval = setInterval(() => {
-      if (gameRunning) {
-          movePlayerBullets();
-          moveEnemyBullets();
-      }
-  }, 100);
+    // Limpiar intervalos anteriores si existen
+    if (gameInterval) clearInterval(gameInterval);
+    if (enemyFireInterval) clearInterval(enemyFireInterval);
 
-  enemyFireInterval = setInterval(() => {
-      if (gameRunning && enemies.length > 0) {
-          enemyShoot();
-      }
-  }, 1500); // Frecuencia de disparo enemigo (1.5 segundos)
+    // Establecer intervalos del juego
+    gameInterval = setInterval(() => {
+        if (gameRunning) {
+            movePlayerBullets();
+            moveEnemyBullets();
+        }
+    }, 100);
+
+    enemyFireInterval = setInterval(() => {
+        if (gameRunning && enemies.length > 0) {
+            enemyShoot();
+        }
+    }, 1500); // Frecuencia de disparo enemigo (1.5 segundos)
 }
+
 
 document.addEventListener('keydown', movePlayer);
 startButton.addEventListener('click', startGame);
@@ -276,10 +290,3 @@ if (isMobile) {
 
 const backgroundMusic = document.getElementById('backgroundMusic');
 
-// Reproducir música al iniciar el juego
-function startGame() {
-    backgroundMusic.volume = 0.5; // Ajustar el volumen
-    backgroundMusic.play().catch(error => {
-        console.error("La música no se pudo reproducir automáticamente. Interacción del usuario requerida.");
-    });
-}

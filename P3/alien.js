@@ -3,6 +3,7 @@ const startButton = document.getElementById('startButton');
 const scoreDisplay = document.getElementById('score');
 const livesDisplay = document.getElementById('lives');
 const player = document.createElement('div');
+const backgroundMusic = document.getElementById('backgroundMusic');
 player.classList.add('player');
 gameContainer.appendChild(player);
 
@@ -195,8 +196,6 @@ function endGame() {
   gameContainer.style.display = "none";
 }
 
-const backgroundMusic = document.getElementById('backgroundMusic'); // Música de fondo
-
 function startGame() {
     // Iniciar música de fondo
     try {
@@ -287,6 +286,4 @@ if (isMobile) {
     // Ocultar los controles táctiles en escritorio
     document.getElementById('mobileControls').style.display = 'none';
 }
-
-const backgroundMusic = document.getElementById('backgroundMusic');
 

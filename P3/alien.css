@@ -72,3 +72,20 @@ body {
     background-color: orange;
     position: absolute;
   }
+
+  .explosion {
+    width: 50px;
+    height: 50px;
+    background: url('explosion.webp') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    z-index: 10;
+    animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}

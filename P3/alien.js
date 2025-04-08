@@ -19,6 +19,7 @@ const totalEnemies = 10;
 let enemiesRemaining = totalEnemies;
 
 const shootSound = new Audio('sonido.mp3');
+const explosionSound = new Audio('explosion.mp3');;
 
 function updateHUD() {
   document.getElementById('score').innerText = `Puntuación: ${score}`;
@@ -78,6 +79,25 @@ function movePlayerBullets() {
       if (
         Math.abs(parseInt(enemy.style.left) - parseInt(bullet.style.left)) < 30 &&
         Math.abs(parseInt(enemy.style.top) - top) < 30) {
+        
+        // Crear explosión
+        const explosion = document.createElement('div');
+        explosion.classList.add('explosion');
+        explosion.style.left = enemy.style.left;
+        explosion.style.top = enemy.style.top;
+        gameContainer.appendChild(explosion);
+        
+        // Reproducir sonido de explosión
+        explosionSound.currentTime = 0;
+        explosionSound.play();
+        
+        // Eliminar elementos después de 1.5 segundos
+        setTimeout(() => {
+          if (explosion.parentNode) {
+            gameContainer.removeChild(explosion);
+          }
+        }, 1500);
+
         gameContainer.removeChild(enemy);
         gameContainer.removeChild(bullet);
         enemies.splice(j, 1);

@@ -1,0 +1,43 @@
+body {
+    backgorund-color: #6dbe2b
+}
+
+h1 {
+    font-size: 70px;
+    margin: 10px;
+    color: #f1dc18;
+    margin-left: 550px;
+}
+
+.elecciones{
+    color: #e7da21;
+    margin-left: 700px;
+    font-size: 40px;
+    margin-top: 30px;
+}
+
+.game{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #814c21;
+    border-radius: 25px;
+    margin-top: 200px;
+}
+
+button{
+    cursor: pointer;
+}
+
+.disabled{
+    color: #757575;
+}
+
+.card{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+

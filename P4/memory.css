@@ -1,16 +1,16 @@
 body {
-    backgorund-color: #6dbe2b
+    backgorund-color: #4486d1
 }
 
 h1 {
     font-size: 70px;
     margin: 10px;
-    color: #f1dc18;
+    color: #5fb3eb;
     margin-left: 550px;
 }
 
 .elecciones{
-    color: #e7da21;
+    color: #4763b1;
     margin-left: 700px;
     font-size: 40px;
     margin-top: 30px;
@@ -21,7 +21,7 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #814c21;
+    background-color: #215681;
     border-radius: 25px;
     margin-top: 200px;
 }
@@ -47,7 +47,7 @@ button{
     border-radius: 5px;
     width: 100%;
     height: 100%;
-    background: #282A3A;
+    background: #29283a;
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
 }   
@@ -55,7 +55,7 @@ button{
     font-size: 28pt;
     text-align: center;
     line-height: 100px;
-    background: #FDF8E6;
+    background: #e6ecfd;
     transform: rotateY(180deg) rotateZ(50deg);
     user-select: none;
 }
@@ -90,8 +90,8 @@ html {
 }
 
 button {
-    background: #f1dc18;
-    color: #6b3508;
+    background: #1852f1;
+    color: #081f6b;
     border-radius: 5px;
     padding: 10px 20px;
     border: 0;
@@ -101,11 +101,11 @@ button {
 }
 
 .disabled {
-    color: #6b3508;
+    color: #080a6b;
 }
 
 .display {
-    color: #f1dc18;
+    color: #3918f1;
     font-size: 14pt;
     margin-left: 10px;
     margin-top: 10px;
@@ -152,7 +152,7 @@ button {
     border-radius: 5px;
     width: 100%;
     height: 100%;
-    background: #e7da21;
+    background: #213fe7;
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
 }
@@ -161,7 +161,7 @@ button {
     font-size: 28pt;
     text-align: center;
     line-height: 100px;
-    background: #da9760;
+    background: #6072da;
     transform: rotateY(180deg) rotateZ(50deg);
     user-select: none;
 }

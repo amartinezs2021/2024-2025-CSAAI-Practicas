@@ -63,3 +63,37 @@ document.querySelectorAll('dificultad').forEach(boton => {
 
 document.getElementById("play").addEventListener("click", iniciarJuego);
 document.getElementById("replay").addEventListener("click", iniciarJuego);
+
+function iniciarJuego() {
+    movimientos = 0;
+    aciertos = 0;
+    actualizarContadores();
+
+    const totalCartas = dificultadSeleccionada * dificultadSeleccionada;
+    totalPares = totalCartas / 2;
+
+    const listaOriginal = imagenes[modoSeleccionado];
+
+    if (totalPares > listaOriginal.length) {
+        alert(`No hay suficientes imágenes para un tablero de ${dificultadSeleccionada}x${dificultadSeleccionada}`);
+        return;
+    }
+
+    const seleccionadas = listaOriginal.slice(0, totalPares);
+    const barajado = mezclarArray([...seleccionadas, ...seleccionadas]);
+
+    const tablero = document.querySelector(".tablero");
+    tablero.innerHTML = '';
+    tablero.style.gridTemplateColumns = `repeat(${dificultadSeleccionada}, auto)`;
+
+    barajado.forEach(src => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="card-front"></div>
+            <div class="card-back"><img src="${src}" alt="" /></div>
+        `;
+        card.addEventListener('click', () => voltearCarta(card, src));
+        tablero.appendChild(card);
+    });
+}

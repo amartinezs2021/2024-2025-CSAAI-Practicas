@@ -49,32 +49,29 @@ const imagenes = {
      ]
 };
 
-// EVENTOS DE MODO Y DIFICULTAD
 document.getElementById("modo-andrea").addEventListener("click", () => {
   modoSeleccionado = 'andrea';
 });
-
 document.getElementById("modo-lola").addEventListener("click", () => {
   modoSeleccionado = 'lola';
 });
-
 document.querySelectorAll('.dificultad').forEach(boton => {
   boton.addEventListener('click', () => {
     dificultadSeleccionada = parseInt(boton.getAttribute('data-grid'));
   });
 });
-
 document.getElementById("play").addEventListener("click", iniciarJuego);
 document.getElementById("replay").addEventListener("click", reiniciarJuego);
-
-// FUNCIONES PRINCIPALES
+document.getElementById("volver-menu").addEventListener("click", () => {
+  document.querySelector('.pantalla-final').style.display = 'none';
+  document.querySelector('.inicio').style.display = 'block';
+});
 
 function iniciarJuego() {
-  // Mostrar juego y ocultar inicio
   document.querySelector('.inicio').style.display = 'none';
   document.querySelector('.game').style.display = 'block';
+  document.querySelector('.pantalla-final').style.display = 'none';
 
-  // Reiniciar variables
   movimientos = 0;
   aciertos = 0;
   primeraCarta = null;
@@ -83,7 +80,6 @@ function iniciarJuego() {
 
   const totalCartas = dificultadSeleccionada * dificultadSeleccionada;
   totalPares = totalCartas / 2;
-
   const listaOriginal = imagenes[modoSeleccionado];
 
   if (totalPares > listaOriginal.length) {
@@ -114,8 +110,6 @@ function reiniciarJuego() {
   iniciarJuego();
 }
 
-// FUNCIONALIDAD DE CARTAS
-
 function voltearCarta(card, src) {
   if (bloquearTablero || card.classList.contains('flipped')) return;
 
@@ -136,8 +130,9 @@ function voltearCarta(card, src) {
 
     if (aciertos === totalPares) {
       setTimeout(() => {
-        alert("🎉 ¡Felicidades! Has encontrado todas las parejas.");
-      }, 300);
+        document.querySelector('.game').style.display = 'none';
+        document.querySelector('.pantalla-final').style.display = 'block';
+      }, 500);
     }
   } else {
     bloquearTablero = true;

@@ -31,6 +31,9 @@ function iniciarJuego() {
     return;
   }
 
+  // Mostrar el contenedor del juego
+  document.querySelector(".game").style.display = "block";
+
   movimientos = 0;
   aciertos = 0;
   actualizarContadores();

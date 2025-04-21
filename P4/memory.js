@@ -124,3 +124,4 @@ let bloquearTablero = false;
 let movimientos = 0;
 let aciertos = 0;
 let totalPares = 0;
+

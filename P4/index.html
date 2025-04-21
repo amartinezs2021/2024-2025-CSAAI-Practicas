@@ -11,27 +11,25 @@
   <div class="inicio">
     <h1>Bienvenido al juego del Memory</h1>
     <p>Elige un modo de juego y una dificultad</p>
-    <!-- Modo de juego -->
     <div class="elecciones">
       <p>Elige el modo de juego:</p>
       <button id="modo-andrea">Andrea (Pájaros)</button>
       <button id="modo-lola">Lola (Mitología)</button>
     </div>
-    <!-- Dificultad -->
     <div class="elecciones">
       <p>Elige la dificultad:</p>
       <button class="dificultad" data-grid="2">2x2</button>
       <button class="dificultad" data-grid="4">4x4</button>
       <button class="dificultad" data-grid="6">6x6</button>
     </div>
-    <!-- Botones de control -->
     <div class="controles">
       <button id="play">Comenzar</button>
       <button id="replay">Reiniciar</button>
     </div>
   </div>
+
   <!-- Juego -->
-  <div class="game" style="display: none;"> 
+  <div class="game" style="display: none;">
     <div class="display">
       <div class="movimientos">0 movimientos</div>
       <div class="timer">Tiempo: 0 sec</div>
@@ -40,6 +38,14 @@
     <div class="grid-container">
       <div class="tablero"></div>
     </div>
+  </div>
+
+  <!-- Pantalla final -->
+  <div class="pantalla-final" style="display: none;">
+    <h2>¡Has ganado! </h2>
+    <p>¡Felicidades por encontrar todas las parejas!</p>
+    <p>Dedicado a Andrea y Lola, os quiero muchisimo</p>
+    <button id="volver-menu">Volver al menú</button>
   </div>
 </body>
 </html>

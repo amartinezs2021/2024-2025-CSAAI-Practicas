@@ -19,8 +19,8 @@ const dificultades = {
   '6x6': 6
 };
 
-//let modoSeleccionado = null; // No hay modo por defecto
-//let dificultadSeleccionada = null; // No hay dificultad por defecto
+let modoSeleccionado = null; // No hay modo por defecto
+let dificultadSeleccionada = null; // No hay dificultad por defecto
 let tiempo = 0; // Variable para el tiempo
 let intervalo; // Variable para el intervalo del temporizador
 

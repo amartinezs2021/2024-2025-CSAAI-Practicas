@@ -55,3 +55,11 @@ document.getElementById("modo-andrea").addEventListener("click", () => {
     modoSeleccionado = 'andrea';
 });
 
+document.querySelectorAll('dificultad').forEach(boton => {
+    boton.addEvenetListener('click', () => {
+        dificultadSeleccionada = parseInt(boton.getAttribute('data-grid'))
+    });
+});
+
+document.getElementById("play").addEventListener("click", iniciarJuego);
+document.getElementById("replay").addEventListener("click", iniciarJuego);

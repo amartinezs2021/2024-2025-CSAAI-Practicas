@@ -19,11 +19,16 @@ const dificultades = {
   '6x6': 6
 };
 
-let modoSeleccionado = 'andrea'; // Modo por defecto
-let dificultadSeleccionada = '4x4'; // Dificultad por defecto
+let modoSeleccionado = null; // No hay modo por defecto
+let dificultadSeleccionada = null; // No hay dificultad por defecto
 
 // Función para iniciar el juego
 function iniciarJuego() {
+  if (!modoSeleccionado || !dificultadSeleccionada) {
+    alert('Por favor, selecciona un modo de juego y una dificultad antes de comenzar.');
+    return;
+  }
+
   movimientos = 0;
   aciertos = 0;
   actualizarContadores();

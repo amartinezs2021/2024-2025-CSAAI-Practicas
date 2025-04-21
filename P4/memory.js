@@ -142,3 +142,7 @@ function voltearCarta(card, src) {
     }
 }
 
+function actualizarContadores() {
+    document.querySelector(".movimientos").textContent = `${movimientos} movimientos`;
+    document.getElementById("display2").textContent = `Aciertos: ${aciertos}`;
+}

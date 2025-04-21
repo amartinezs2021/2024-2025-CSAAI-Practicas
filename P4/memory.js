@@ -44,3 +44,14 @@ const imagenes = {
         'lola18.jpg',
     ]
 };
+
+let primeraCarta = null;
+let bloquearTablero = false;
+let movimientos = 0;
+let aciertos = 0;
+let totalPares = 0;
+
+document.getElementById("modo-andrea").addEventListener("click", () => {
+    modoSeleccionado = 'andrea';
+});
+

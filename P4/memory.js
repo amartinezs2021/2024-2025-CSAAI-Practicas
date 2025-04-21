@@ -49,8 +49,8 @@ function iniciarJuego() {
   const seleccionadas = listaOriginal.slice(0, totalPares);
   const barajado = mezclarArray([...seleccionadas, ...seleccionadas]);
   const tablero = document.querySelector(".tablero");
-  tablero.innerHTML = '';
-  tablero.style.gridTemplateColumns = `repeat(${dificultadSeleccionada}, auto)`;
+  tablero.innerHTML = ''; // Limpiar el tablero antes de llenarlo
+  tablero.style.gridTemplateColumns = `repeat(${dificultadSeleccionada}, auto)`; // Configurar columnas
 
   barajado.forEach(src => {
     const card = document.createElement('div');

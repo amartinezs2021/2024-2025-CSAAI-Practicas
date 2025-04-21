@@ -1,22 +1,19 @@
 body {
-    backgorund-color: #4486d1
-}
-
-h1 {
+    background-color: #4486d1;
+  }
+  h1 {
     font-size: 70px;
     margin: 10px;
     color: #5fb3eb;
     margin-left: 550px;
-}
-
-.elecciones{
+  }
+  .elecciones {
     color: #4763b1;
     margin-left: 700px;
     font-size: 40px;
     margin-top: 30px;
-}
-
-.game{
+  }
+  .game {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,25 +21,21 @@ h1 {
     background-color: #215681;
     border-radius: 25px;
     margin-top: 200px;
-}
-
-button{
+  }
+  button {
     cursor: pointer;
-}
-
-.disabled{
+  }
+  .disabled {
     color: #757575;
-}
-
-.card{
+  }
+  .card {
     position: relative;
     width: 100px;
     height: 100px;
     cursor: pointer;
-}
-
-.card-front,
-.card-back {
+  }
+  .card-front,
+  .card-back {
     position: absolute;
     border-radius: 5px;
     width: 100%;
@@ -50,46 +43,31 @@ button{
     background: #29283a;
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
-}   
-.card-back {
+  }
+  .card-back {
     font-size: 28pt;
     text-align: center;
     line-height: 100px;
     background: #e6ecfd;
     transform: rotateY(180deg) rotateZ(50deg);
     user-select: none;
-}
-
-
-.card.flipped .card-front {
+  }
+  .card.flipped .card-front {
     transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.card.flipped .card-back {
+  }
+  .card.flipped .card-back {
     transform: rotateY(0) rotateZ(0);
-}
-
-
-html {
+  }
+  html {
     width: 100%;
     height: 100%;
-    /* background: linear-gradient(325deg,  #6f00fc 0%,#fc7900 50%,#fcc700 100%); */
-}
-
-.game {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.controls {
+  }
+  .controls {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
-}
-
-button {
+  }
+  button {
     background: #1852f1;
     color: #081f6b;
     border-radius: 5px;
@@ -98,56 +76,46 @@ button {
     cursor: pointer;
     font-family: Montserrat;
     font-size: 18pt;
-}
-
-.disabled {
+  }
+  .disabled {
     color: #080a6b;
-}
-
-.display {
+  }
+  .display {
     color: #3918f1;
     font-size: 14pt;
     margin-left: 10px;
     margin-top: 10px;
-}
-
-.grid-container {
+  }
+  .grid-container {
     position: relative;
-}
-
-.tablero,
-.win {
+  }
+  .tablero,
+  .win {
     border-radius: 5px;
     box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
-    /* background: linear-gradient(135deg,  #6f00fc 0%,#fc7900 50%,#fcc700 100%); */
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
-}
-
-.tablero {
+  }
+  .tablero {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 20px;
-}
-
-.grid-container.flipped .tablero {
+  }
+  .grid-container.flipped .tablero {
     transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.grid-container.flipped .win {
+  }
+  .grid-container.flipped .win {
     transform: rotateY(0) rotateZ(0);
-}
-
-.card {
+  }
+  .card {
     position: relative;
     width: 100px;
     height: 100px;
     cursor: pointer;
-}
-
-.card-front,
-.card-back {
+  }
+  .card-front,
+  .card-back {
     position: absolute;
     border-radius: 5px;
     width: 100%;
@@ -155,26 +123,22 @@ button {
     background: #213fe7;
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
-}
-
-.card-back {
+  }
+  .card-back {
     font-size: 28pt;
     text-align: center;
     line-height: 100px;
     background: #6072da;
     transform: rotateY(180deg) rotateZ(50deg);
     user-select: none;
-}
-
-.card.flipped .card-front {
+  }
+  .card.flipped .card-front {
     transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.card.flipped .card-back {
+  }
+  .card.flipped .card-back {
     transform: rotateY(0) rotateZ(0);
-}
-
-.win {
+  }
+  .win {
     position: absolute;
     top: 0;
     left: 0;
@@ -183,42 +147,38 @@ button {
     text-align: center;
     background: #FDF8E6;
     transform: rotateY(180deg) rotateZ(50deg);
-}
-
-.win-text {
+  }
+  .win-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 21pt;
     color: #282A3A;
-}
-
-.highlight {
+  }
+  .highlight {
     color: #6f00fc;
-}
-
-@media screen and (max-width: 600px) {
-  
+  }
+  @media screen and (max-width: 600px) {
     .game {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%; 
-        height: auto; 
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: auto;
     }
-    
-    h1{
-        font-size: 65px;
-        margin: 0;
+    h1 {
+      font-size: 65px;
+      margin: 0;
     }
-    .elecciones{
-        margin: 0;
+    .elecciones {
+      margin: 0;
     }
-    .game{
-        margin-top: 300px;
+    .game {
+      margin-top: 300px;
     }
-    .card{
-        width: 90%;
+    .card {
+      width: 90%;
     }
-}
+  }
+  

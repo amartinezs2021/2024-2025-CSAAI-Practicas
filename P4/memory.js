@@ -24,24 +24,24 @@ const imagenes = {
     ],
     lola: [
         
-        'lola1.jpg',
-        'lola2.jpg',
+        'lola1.avif',
+        'lola2.webp',
         'lola3.jpg',
-        'lola4.jpg',
+        'lola4.webp',
         'lola5.jpg',
         'lola6.jpg',
         'lola7.jpg',
-        'lola8.jpg',
+        'lola8.png',
         'lola9.jpg',
-        'lola10.jpg',
+        'lola10.avif',
         'lola11.jpg',
-        'lola12.jpg',
+        'lola12.webp',
         'lola13.jpg',
         'lola14.jpg',
-        'lola15.jpg',
+        'lola15.avif',
         'lola16.jpg',
-        'lola17.jpg',
-        'lola18.jpg',
+        'lola17.png',
+        'lola18.png',
     ]
 };
 

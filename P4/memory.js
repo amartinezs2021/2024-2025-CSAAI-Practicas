@@ -1,3 +1,5 @@
+// memory.js (adaptado)
+
 // Definición de modos e imágenes
 const modos = {
     andrea: [
@@ -24,6 +26,9 @@ const modos = {
   
   // Función para iniciar el juego
   function iniciarJuego() {
+    movimientos = 0;
+    aciertos = 0;
+    actualizarContadores();
     const totalCartas = dificultades[dificultadSeleccionada] * dificultades[dificultadSeleccionada];
     const totalPares = totalCartas / 2;
     const listaOriginal = modos[modoSeleccionado];
@@ -62,7 +67,7 @@ const modos = {
     return array;
   }
   
-  //ión para voltear las cartas
+  //tear las cartas
   function voltearCarta(card, src) {
     if (bloquearTablero || card.classList.contains('flipped')) return;
     card.classList.add('flipped');

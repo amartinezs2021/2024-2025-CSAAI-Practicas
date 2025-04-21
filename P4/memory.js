@@ -108,4 +108,37 @@ function mezclarArray(array) {
     return array;
 }
 
+function voltearCarta(card, src) {
+    if (bloquearTablero || card.classList.contains('flipped')) return;
+
+    card.classList.add('flipped');
+
+    if (!primeraCarta) {
+        primeraCarta = { card, src };
+        return;
+    }
+
+    movimientos++;
+    actualizarContadores();
+
+    if (primeraCarta.src === src) {
+        aciertos++;
+        actualizarContadores();
+        primeraCarta = null;
+
+        if (aciertos === totalPares) {
+            setTimeout(() => {
+                alert("¡Felicidades! Has ganado 🎉");
+            }, 300);
+        }
+    } else {
+        bloquearTablero = true;
+        setTimeout(() => {
+            card.classList.remove('flipped');
+            primeraCarta.card.classList.remove('flipped');
+            primeraCarta = null;
+            bloquearTablero = false;
+        }, 1000);
+    }
+}
 

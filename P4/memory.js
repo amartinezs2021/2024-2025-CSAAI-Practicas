@@ -21,6 +21,8 @@ const dificultades = {
 
 let modoSeleccionado = null; // No hay modo por defecto
 let dificultadSeleccionada = null; // No hay dificultad por defecto
+let tiempo = 0; // Variable para el tiempo
+let intervalo; // Variable para el intervalo del temporizador
 
 // Función para iniciar el juego
 function iniciarJuego() {
@@ -59,6 +61,14 @@ function iniciarJuego() {
     card.addEventListener('click', () => voltearCarta(card, src));
     tablero.appendChild(card);
   });
+
+  // Iniciar el temporizador
+  tiempo = 0;
+  clearInterval(intervalo);
+  intervalo = setInterval(() => {
+    tiempo++;
+    document.querySelector(".timer").textContent = `Tiempo: ${tiempo} sec`;
+  }, 1000);
 }
 
 // Función para mezclar el array de imágenes
@@ -87,6 +97,7 @@ function voltearCarta(card, src) {
     actualizarContadores();
     primeraCarta = null;
     if (aciertos === totalPares) {
+      clearInterval(intervalo); // Detener el temporizador
       setTimeout(() => {
         alert("¡Felicidades! Has ganado 🎉");
       }, 300);
@@ -111,13 +122,16 @@ function actualizarContadores() {
 // Event listeners para los botones de modo y dificultad
 document.getElementById("modo-andrea").addEventListener("click", () => {
   modoSeleccionado = 'andrea';
+  alert("Modo seleccionado: Andrea");
 });
 document.getElementById("modo-lola").addEventListener("click", () => {
   modoSeleccionado = 'lola';
+  alert("Modo seleccionado: Lola");
 });
 document.querySelectorAll('.dificultad').forEach(boton => {
   boton.addEventListener('click', () => {
     dificultadSeleccionada = boton.getAttribute('data-grid');
+    alert(`Dificultad seleccionada: ${dificultadSeleccionada}`);
   });
 });
 document.getElementById("play").addEventListener("click", iniciarJuego);
@@ -129,4 +143,3 @@ let bloquearTablero = false;
 let movimientos = 0;
 let aciertos = 0;
 let totalPares = 0;
-

@@ -6,6 +6,8 @@ let movimientos = 0;
 let aciertos = 0;
 let totalPares = 0;
 
+
+
 const sonidoAcierto = document.getElementById("sonido-acierto");
 const sonidoVictoria = document.getElementById("sonido-victoria");
 const musicaFondo = document.getElementById("musica-fondo");

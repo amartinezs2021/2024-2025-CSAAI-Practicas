@@ -5,7 +5,9 @@ let bloquearTablero = false;
 let movimientos = 0;
 let aciertos = 0;
 let totalPares = 0;
-
+let tiempo = 0;
+let temporizadorActivo = false;
+let intervaloTiempo = null;
 
 
 const sonidoAcierto = document.getElementById("sonido-acierto");
@@ -131,6 +133,23 @@ function voltearCarta(card, src) {
 
   movimientos++;
   actualizarContadores();
+  tiempo = 0;
+temporizadorActivo = true;
+actualizarTiempo();
+
+clearInterval(intervaloTiempo);
+intervaloTiempo = setInterval(() => {
+  if (temporizadorActivo) {
+    tiempo++;
+    actualizarTiempo();
+  }
+}, 1000);
+
+function actualizarTiempo() {
+  const timerDisplay = document.querySelector(".timer");
+  timerDisplay.textContent = `Tiempo: ${tiempo} sec`;
+}
+
 
   if (primeraCarta.src === src) {
     aciertos++;
@@ -141,6 +160,7 @@ function voltearCarta(card, src) {
 
     if (aciertos === totalPares) {
       setTimeout(() => {
+        temporizadorActivo = false;
         musicaFondo.pause();
         sonidoVictoria.play();
         document.querySelector('.game').style.display = 'none';

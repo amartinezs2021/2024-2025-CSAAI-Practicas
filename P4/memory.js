@@ -189,19 +189,22 @@ function voltearCarta(card, src) {
     primeraCarta = null;
 
     if (aciertos === totalPares) {
+      juegoEnCurso = false; // Detener temporizador inmediatamente
+      musicaFondo.pause();
+      sonidoVictoria.play();
+    
+      // Esperar breve efecto visual
       setTimeout(() => {
-        juegoEnCurso = false;
-        musicaFondo.pause();
-        sonidoVictoria.play();
-
-        // Mostrar resumen final en la pantalla de victoria
+        // Mostrar valores reales
         document.getElementById("final-movimientos").textContent = movimientos;
         document.getElementById("final-tiempo").textContent = tiempo;
-
+    
+        // Cambiar a pantalla final
         document.querySelector('.game').style.display = 'none';
         document.querySelector('.pantalla-final').style.display = 'block';
       }, 500);
     }
+    
   } else {
     bloquearTablero = true;
     setTimeout(() => {

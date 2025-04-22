@@ -6,6 +6,11 @@ let movimientos = 0;
 let aciertos = 0;
 let totalPares = 0;
 
+const sonidoAcierto = document.getElementById("sonido-acierto");
+const sonidoVictoria = document.getElementById("sonido-victoria");
+const musicaFondo = document.getElementById("musica-fondo");
+
+
 const imagenes = {
   andrea: [
     'aiko1.jpg',
@@ -71,6 +76,8 @@ function iniciarJuego() {
   document.querySelector('.inicio').style.display = 'none';
   document.querySelector('.game').style.display = 'block';
   document.querySelector('.pantalla-final').style.display = 'none';
+  musicaFondo.currentTime = 0;
+  musicaFondo.play();
 
   movimientos = 0;
   aciertos = 0;
@@ -126,14 +133,19 @@ function voltearCarta(card, src) {
   if (primeraCarta.src === src) {
     aciertos++;
     actualizarContadores();
+    sonidoAcierto.play();
+    
     primeraCarta = null;
 
     if (aciertos === totalPares) {
       setTimeout(() => {
+        musicaFondo.pause();
+        sonidoVictoria.play();
         document.querySelector('.game').style.display = 'none';
         document.querySelector('.pantalla-final').style.display = 'block';
       }, 500);
     }
+    
   } else {
     bloquearTablero = true;
     setTimeout(() => {

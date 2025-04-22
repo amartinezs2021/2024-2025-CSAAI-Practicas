@@ -1,19 +1,20 @@
 let modoSeleccionado = 'andrea';
 let dificultadSeleccionada = 2;
+
 let primeraCarta = null;
 let bloquearTablero = false;
 let movimientos = 0;
 let aciertos = 0;
 let totalPares = 0;
+
 let tiempo = 0;
-let temporizadorActivo = false;
 let intervaloTiempo = null;
+let juegoEnCurso = false;
 
-
+// Audios
 const sonidoAcierto = document.getElementById("sonido-acierto");
 const sonidoVictoria = document.getElementById("sonido-victoria");
 const musicaFondo = document.getElementById("musica-fondo");
-
 
 const imagenes = {
   andrea: [
@@ -58,37 +59,69 @@ const imagenes = {
      ]
 };
 
+// Eventos de selección
 document.getElementById("modo-andrea").addEventListener("click", () => {
   modoSeleccionado = 'andrea';
 });
+
 document.getElementById("modo-lola").addEventListener("click", () => {
   modoSeleccionado = 'lola';
 });
+
 document.querySelectorAll('.dificultad').forEach(boton => {
   boton.addEventListener('click', () => {
     dificultadSeleccionada = parseInt(boton.getAttribute('data-grid'));
   });
 });
+
+// Botones de control
 document.getElementById("play").addEventListener("click", iniciarJuego);
 document.getElementById("replay").addEventListener("click", reiniciarJuego);
+
 document.getElementById("volver-menu").addEventListener("click", () => {
+  // Detener audio y temporizador
+  musicaFondo.pause();
+  musicaFondo.currentTime = 0;
+  clearInterval(intervaloTiempo);
+  intervaloTiempo = null;
+  tiempo = 0;
+  juegoEnCurso = false;
+  actualizarTiempo();
+
+  // Volver al menú
   document.querySelector('.pantalla-final').style.display = 'none';
   document.querySelector('.inicio').style.display = 'block';
 });
 
 function iniciarJuego() {
+  // Mostrar juego
   document.querySelector('.inicio').style.display = 'none';
   document.querySelector('.game').style.display = 'block';
   document.querySelector('.pantalla-final').style.display = 'none';
-  musicaFondo.currentTime = 0;
-  musicaFondo.play();
 
+  // Reset estado del juego
   movimientos = 0;
   aciertos = 0;
   primeraCarta = null;
   bloquearTablero = false;
+  juegoEnCurso = true;
   actualizarContadores();
 
+  // Reiniciar tiempo
+  tiempo = 0;
+  actualizarTiempo();
+
+  // ⏱️ Iniciar temporizador solo si no está corriendo
+  if (!intervaloTiempo) {
+    intervaloTiempo = setInterval(() => {
+      if (juegoEnCurso) {
+        tiempo++;
+        actualizarTiempo();
+      }
+    }, 1000);
+  }
+
+  // Preparar imágenes
   const totalCartas = dificultadSeleccionada * dificultadSeleccionada;
   totalPares = totalCartas / 2;
   const listaOriginal = imagenes[modoSeleccionado];
@@ -105,6 +138,11 @@ function iniciarJuego() {
   tablero.innerHTML = '';
   tablero.style.gridTemplateColumns = `repeat(${dificultadSeleccionada}, auto)`;
 
+  // Música de fondo
+  musicaFondo.currentTime = 0;
+  musicaFondo.play();
+
+  // Crear cartas
   barajado.forEach(src => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -133,41 +171,23 @@ function voltearCarta(card, src) {
 
   movimientos++;
   actualizarContadores();
-  tiempo = 0;
-temporizadorActivo = true;
-actualizarTiempo();
-
-clearInterval(intervaloTiempo);
-intervaloTiempo = setInterval(() => {
-  if (temporizadorActivo) {
-    tiempo++;
-    actualizarTiempo();
-  }
-}, 1000);
-
-function actualizarTiempo() {
-  const timerDisplay = document.querySelector(".timer");
-  timerDisplay.textContent = `Tiempo: ${tiempo} sec`;
-}
-
 
   if (primeraCarta.src === src) {
     aciertos++;
     actualizarContadores();
     sonidoAcierto.play();
-    
     primeraCarta = null;
 
     if (aciertos === totalPares) {
       setTimeout(() => {
-        temporizadorActivo = false;
+        juegoEnCurso = false;
         musicaFondo.pause();
         sonidoVictoria.play();
+
         document.querySelector('.game').style.display = 'none';
         document.querySelector('.pantalla-final').style.display = 'block';
       }, 500);
     }
-    
   } else {
     bloquearTablero = true;
     setTimeout(() => {
@@ -194,4 +214,9 @@ function mezclarArray(array) {
 function actualizarContadores() {
   document.querySelector(".movimientos").textContent = `${movimientos} movimientos`;
   document.getElementById("display2").textContent = `Aciertos: ${aciertos}`;
+}
+
+function actualizarTiempo() {
+  const timerDisplay = document.querySelector(".timer");
+  timerDisplay.textContent = `Tiempo: ${tiempo} sec`;
 }

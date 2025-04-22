@@ -105,23 +105,22 @@ document.getElementById("volver-menu").addEventListener("click", () => {
 
 // Función para iniciar el juego
 function iniciarJuego() {
-  // Mostrar pantalla de juego y ocultar menú/pantalla final
+  // Mostrar la pantalla del juego y ocultar las otras
   document.querySelector('.inicio').style.display = 'none';
   document.querySelector('.game').style.display = 'block';
   document.querySelector('.pantalla-final').style.display = 'none';
 
-  // Reiniciar variables del juego
+  // Reiniciar variables de estado del juego
   movimientos = 0;
   aciertos = 0;
+  tiempo = 0;
+  juegoEnCurso = true;
   primeraCarta = null;
   bloquearTablero = false;
-  juegoEnCurso = true;
   actualizarContadores();
-
-  // Reiniciar y mostrar el temporizador
-  tiempo = 0;
   actualizarTiempo();
-  // Iniciar temporizador si no está en marcha
+
+  // Iniciar o continuar temporizador solo si no está activo
   if (!intervaloTiempo) {
     intervaloTiempo = setInterval(() => {
       if (juegoEnCurso) {
@@ -131,28 +130,31 @@ function iniciarJuego() {
     }, 1000);
   }
 
-  // Preparar las imágenes según la dificultad y modo seleccionado
+  // Calcular total de cartas y pares
   const totalCartas = dificultadSeleccionada * dificultadSeleccionada;
   totalPares = totalCartas / 2;
   const listaOriginal = imagenes[modoSeleccionado];
 
+  // Validar cantidad de imágenes disponibles
   if (totalPares > listaOriginal.length) {
     alert(`No hay suficientes imágenes para un tablero de ${dificultadSeleccionada}x${dificultadSeleccionada}`);
     return;
   }
 
+  // Seleccionar y duplicar las imágenes para formar pares
   const seleccionadas = listaOriginal.slice(0, totalPares);
   const barajado = mezclarArray([...seleccionadas, ...seleccionadas]);
 
+  // Limpiar y configurar el tablero
   const tablero = document.querySelector(".tablero");
   tablero.innerHTML = '';
   tablero.style.gridTemplateColumns = `repeat(${dificultadSeleccionada}, auto)`;
 
-  // Reproducir música de fondo
+  // Iniciar la música de fondo desde el principio
   musicaFondo.currentTime = 0;
   musicaFondo.play();
 
-  // Crear cada carta
+  // Crear las cartas y añadirlas al tablero
   barajado.forEach(src => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -240,3 +242,8 @@ function actualizarTiempo() {
   const timerDisplay = document.querySelector(".timer");
   timerDisplay.textContent = `Tiempo: ${tiempo} sec`;
 }
+
+function reiniciarJuego() {
+  iniciarJuego();
+}
+

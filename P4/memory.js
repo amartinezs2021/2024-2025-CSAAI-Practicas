@@ -1,6 +1,6 @@
+// Variables iniciales
 let modoSeleccionado = 'andrea';
 let dificultadSeleccionada = 2;
-
 let primeraCarta = null;
 let bloquearTablero = false;
 let movimientos = 0;
@@ -16,6 +16,7 @@ const sonidoAcierto = document.getElementById("sonido-acierto");
 const sonidoVictoria = document.getElementById("sonido-victoria");
 const musicaFondo = document.getElementById("musica-fondo");
 
+//Imagenes
 const imagenes = {
   andrea: [
     'aiko1.jpg',
@@ -59,27 +60,36 @@ const imagenes = {
      ]
 };
 
-// Eventos de selección
-document.getElementById("modo-andrea").addEventListener("click", () => {
-  modoSeleccionado = 'andrea';
-});
+// Eventos para los botones de selección de modo (temática)
+const botonesModo = document.querySelectorAll('#modo-andrea, #modo-lola');
+botonesModo.forEach(boton => {
+  boton.addEventListener("click", () => {
+    modoSeleccionado = boton.id === 'modo-andrea' ? 'andrea' : 'lola';
 
-document.getElementById("modo-lola").addEventListener("click", () => {
-  modoSeleccionado = 'lola';
-});
-
-document.querySelectorAll('.dificultad').forEach(boton => {
-  boton.addEventListener('click', () => {
-    dificultadSeleccionada = parseInt(boton.getAttribute('data-grid'));
+    // Resalta el botón seleccionado y remueve la clase del resto
+    botonesModo.forEach(b => b.classList.remove('boton-seleccionado'));
+    boton.classList.add('boton-seleccionado');
   });
 });
 
-// Botones de control
+// Eventos para los botones de selección de dificultad
+const botonesDificultad = document.querySelectorAll('.dificultad');
+botonesDificultad.forEach(boton => {
+  boton.addEventListener('click', () => {
+    dificultadSeleccionada = parseInt(boton.getAttribute('data-grid'));
+
+    // Resalta el botón seleccionado y remueve la clase del resto
+    botonesDificultad.forEach(b => b.classList.remove('boton-seleccionado'));
+    boton.classList.add('boton-seleccionado');
+  });
+});
+
+// Eventos para los botones de control
 document.getElementById("play").addEventListener("click", iniciarJuego);
 document.getElementById("replay").addEventListener("click", reiniciarJuego);
 
 document.getElementById("volver-menu").addEventListener("click", () => {
-  // Detener audio y temporizador
+  // Detener la música y el temporizador
   musicaFondo.pause();
   musicaFondo.currentTime = 0;
   clearInterval(intervaloTiempo);
@@ -88,18 +98,19 @@ document.getElementById("volver-menu").addEventListener("click", () => {
   juegoEnCurso = false;
   actualizarTiempo();
 
-  // Volver al menú
+  // Volver a la pantalla del menú inicial
   document.querySelector('.pantalla-final').style.display = 'none';
   document.querySelector('.inicio').style.display = 'block';
 });
 
+// Función para iniciar el juego
 function iniciarJuego() {
-  // Mostrar juego
+  // Mostrar pantalla de juego y ocultar menú/pantalla final
   document.querySelector('.inicio').style.display = 'none';
   document.querySelector('.game').style.display = 'block';
   document.querySelector('.pantalla-final').style.display = 'none';
 
-  // Reset estado del juego
+  // Reiniciar variables del juego
   movimientos = 0;
   aciertos = 0;
   primeraCarta = null;
@@ -107,11 +118,10 @@ function iniciarJuego() {
   juegoEnCurso = true;
   actualizarContadores();
 
-  // Reiniciar tiempo
+  // Reiniciar y mostrar el temporizador
   tiempo = 0;
   actualizarTiempo();
-
-  // ⏱️ Iniciar temporizador solo si no está corriendo
+  // Iniciar temporizador si no está en marcha
   if (!intervaloTiempo) {
     intervaloTiempo = setInterval(() => {
       if (juegoEnCurso) {
@@ -121,7 +131,7 @@ function iniciarJuego() {
     }, 1000);
   }
 
-  // Preparar imágenes
+  // Preparar las imágenes según la dificultad y modo seleccionado
   const totalCartas = dificultadSeleccionada * dificultadSeleccionada;
   totalPares = totalCartas / 2;
   const listaOriginal = imagenes[modoSeleccionado];
@@ -138,11 +148,11 @@ function iniciarJuego() {
   tablero.innerHTML = '';
   tablero.style.gridTemplateColumns = `repeat(${dificultadSeleccionada}, auto)`;
 
-  // Música de fondo
+  // Reproducir música de fondo
   musicaFondo.currentTime = 0;
   musicaFondo.play();
 
-  // Crear cartas
+  // Crear cada carta
   barajado.forEach(src => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -159,9 +169,9 @@ function reiniciarJuego() {
   iniciarJuego();
 }
 
+// Función para voltear una carta y controlar la lógica de parejas
 function voltearCarta(card, src) {
   if (bloquearTablero || card.classList.contains('flipped')) return;
-
   card.classList.add('flipped');
 
   if (!primeraCarta) {
@@ -184,6 +194,10 @@ function voltearCarta(card, src) {
         musicaFondo.pause();
         sonidoVictoria.play();
 
+        // Mostrar resumen final en la pantalla de victoria
+        document.getElementById("final-movimientos").textContent = movimientos;
+        document.getElementById("final-tiempo").textContent = tiempo;
+
         document.querySelector('.game').style.display = 'none';
         document.querySelector('.pantalla-final').style.display = 'block';
       }, 500);
@@ -192,30 +206,33 @@ function voltearCarta(card, src) {
     bloquearTablero = true;
     setTimeout(() => {
       card.classList.remove('flipped');
-      primeraCarta.card.classList.remove('flipped');
+      if (primeraCarta && primeraCarta.card) {
+        primeraCarta.card.classList.remove('flipped');
+      }
       primeraCarta = null;
       bloquearTablero = false;
     }, 1000);
   }
 }
 
+// Función para mezclar aleatoriamente un arreglo
 function mezclarArray(array) {
   let currentIndex = array.length, randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]
-    ];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
   return array;
 }
 
+// Actualiza los contadores de movimientos y aciertos
 function actualizarContadores() {
   document.querySelector(".movimientos").textContent = `${movimientos} movimientos`;
   document.getElementById("display2").textContent = `Aciertos: ${aciertos}`;
 }
 
+// Actualiza el temporizador
 function actualizarTiempo() {
   const timerDisplay = document.querySelector(".timer");
   timerDisplay.textContent = `Tiempo: ${tiempo} sec`;

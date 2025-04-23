@@ -86,7 +86,8 @@ botonesDificultad.forEach(boton => {
 
 // Eventos para los botones de control
 document.getElementById("play").addEventListener("click", iniciarJuego);
-document.getElementById("replay").addEventListener("click", reiniciarJuego);
+document.getElementById("replay-juego").addEventListener("click", reiniciarJuego);
+document.getElementById("replay-inicio").addEventListener("click", reiniciarJuego);
 
 document.getElementById("volver-menu").addEventListener("click", () => {
   // Detener la música y el temporizador

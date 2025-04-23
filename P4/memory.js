@@ -86,8 +86,7 @@ botonesDificultad.forEach(boton => {
 
 // Eventos para los botones de control
 document.getElementById("play").addEventListener("click", iniciarJuego);
-document.getElementById("replay-juego").addEventListener("click", reiniciarJuego);
-document.getElementById("replay-inicio").addEventListener("click", reiniciarJuego);
+document.getElementById("replay").addEventListener("click", reiniciarJuego);
 
 document.getElementById("volver-menu").addEventListener("click", () => {
   // Detener la música y el temporizador
@@ -244,21 +243,7 @@ function actualizarTiempo() {
   timerDisplay.textContent = `Tiempo: ${tiempo} sec`;
 }
 
-function reiniciarJuego() {
-  // Detener temporizador existente
-  clearInterval(intervaloTiempo);
 
-  // Detener música y reiniciarla
-  musicaFondo.pause();
-  musicaFondo.currentTime = 0;
-
-  // Reiniciar variables de tiempo
-  tiempo = 0;
-  juegoEnCurso = true;
-
-  // Reiniciar el juego completamente
-  iniciarJuego();
-}
 
 
 

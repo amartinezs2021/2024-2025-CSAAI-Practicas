@@ -247,7 +247,6 @@ function actualizarTiempo() {
 function reiniciarJuego() {
   // Detener temporizador existente
   clearInterval(intervaloTiempo);
-  intervaloTiempo = null;
 
   // Detener música y reiniciarla
   musicaFondo.pause();
@@ -260,5 +259,7 @@ function reiniciarJuego() {
   // Reiniciar el juego completamente
   iniciarJuego();
 }
+
+
 
 

@@ -244,6 +244,20 @@ function actualizarTiempo() {
 }
 
 function reiniciarJuego() {
+  // Detener temporizador existente
+  clearInterval(intervaloTiempo);
+  intervaloTiempo = null;
+
+  // Detener música y reiniciarla
+  musicaFondo.pause();
+  musicaFondo.currentTime = 0;
+
+  // Reiniciar variables de tiempo
+  tiempo = 0;
+  juegoEnCurso = true;
+
+  // Reiniciar el juego completamente
   iniciarJuego();
 }
+
 

@@ -3,3 +3,25 @@
     scr: url(./Jersey10-Regular.ttf);
 }
 
+canvas {
+    border: 1px solid black;
+    width: 90%;
+}
+  
+.controls {
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    border: none; 
+    color: white; 
+    padding: 14px 28px; 
+    cursor: pointer; 
+    font-family: Jersey10-Regular;
+    font-size: 20px;
+    border-radius: 5px; 
+    display: inline-block;
+    margin: 5px;
+    background-image: linear-gradient(to right, #000000, #787d83); 
+}

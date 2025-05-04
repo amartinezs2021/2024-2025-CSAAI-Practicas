@@ -1,5 +1,5 @@
-const canvas = document.getElementById('networtCanvas');
-const ctx = canvas.getContent('2d');
+const canvas = document.getElementById('networkCanvas');
+const ctx = canvas.getContext('2d');
 
 let redAleatoria;
 let nodoOrigen = 0, nodoDestino = 0;
@@ -16,92 +16,92 @@ const btnMinPath = document.getElementById("btnMinPath");
 
 class Nodo {
 
-    constructor(id, x, y, delay) {
-      this.id = id;
-      this.x = x;
-      this.y = y;
-      this.delay = delay;
-      this.conexiones = [];
-    }
-    
-    conectar(nodo, peso) {
-      this.conexiones.push({ nodo, peso });
-    }
+  constructor(id, x, y, delay) {
+    this.id = id;
+    this.x = x;
+    this.y = y;
+    this.delay = delay;
+    this.conexiones = [];
+  }
   
-    isconnected(idn) {
-  
-      let isconnected = false;
-    
-      this.conexiones.forEach(({ nodo: conexion, peso }) => {      
-        if (idn == conexion.id) {
-          isconnected = true;
-        }      
-      });
-          
-      return isconnected;
-    }
-  
-    node_distance(nx, ny) {
-  
-      var a = nx - this.x;
-      var b = ny - this.y;
-              
-      return Math.floor(Math.sqrt( a*a + b*b ));
-      
-    }
-  
-    far_node( nodos ) {
-  
-      let distn = 0;
-      let cnode = this.id;
-      let distaux = 0;
-      let pos = 0;
-      let npos = 0;
-  
-      for (let nodo of nodos) {
-        distaux = this.node_distance(nodo.x, nodo.y);
-    
-        if (distaux != 0 && distaux > distn) {
-          distn = distaux;
-          cnode = nodo.id;
-          npos = pos;
-        }
-  
-        pos += 1;
-      }
-    
-      return {pos: npos, id: cnode, distance: distn,};
-  
-    }
-  
-    close_node( nodos ) {
-  
-      let far_node = this.far_node( nodos );
-      let cnode = far_node.id;
-      let distn = far_node.distance;
-      let distaux = 0;
-      let pos = 0;
-      let npos = 0;    
-        
-      for (let nodo of nodos) {
-        distaux = this.node_distance(nodo.x, nodo.y);
-        
-        if (distaux != 0 && distaux <= distn) {
-          distn = distaux;
-          cnode = nodo.id;
-          npos = pos;
-        }
-      
-        pos += 1;
-      }
-        
-      return {pos:npos, id: cnode, distance: distn,};
-        
-    }
-  
+  conectar(nodo, peso) {
+    this.conexiones.push({ nodo, peso });
   }
 
-  function crearRedAleatoriaConCongestion(numNodos, numConexiones) {
+  isconnected(idn) {
+
+    let isconnected = false;
+  
+    this.conexiones.forEach(({ nodo: conexion, peso }) => {      
+      if (idn == conexion.id) {
+        isconnected = true;
+      }      
+    });
+        
+    return isconnected;
+  }
+
+  node_distance(nx, ny) {
+
+    var a = nx - this.x;
+    var b = ny - this.y;
+            
+    return Math.floor(Math.sqrt( a*a + b*b ));
+    
+  }
+
+  far_node( nodos ) {
+
+    let distn = 0;
+    let cnode = this.id;
+    let distaux = 0;
+    let pos = 0;
+    let npos = 0;
+
+    for (let nodo of nodos) {
+      distaux = this.node_distance(nodo.x, nodo.y);
+  
+      if (distaux != 0 && distaux > distn) {
+        distn = distaux;
+        cnode = nodo.id;
+        npos = pos;
+      }
+
+      pos += 1;
+    }
+  
+    return {pos: npos, id: cnode, distance: distn,};
+
+  }
+
+  close_node( nodos ) {
+
+    let far_node = this.far_node( nodos );
+    let cnode = far_node.id;
+    let distn = far_node.distance;
+    let distaux = 0;
+    let pos = 0;
+    let npos = 0;    
+      
+    for (let nodo of nodos) {
+      distaux = this.node_distance(nodo.x, nodo.y);
+      
+      if (distaux != 0 && distaux <= distn) {
+        distn = distaux;
+        cnode = nodo.id;
+        npos = pos;
+      }
+    
+      pos += 1;
+    }
+      
+    return {pos:npos, id: cnode, distance: distn,};
+      
+  }
+
+}
+
+function crearRedAleatoriaConCongestion(numNodos, numConexiones) {
   
     const nodos = [];
     let x = 0, y = 0, delay = 0;
@@ -166,13 +166,13 @@ class Nodo {
 
   return nodos;
 }
- 
+
 function generarRetardo() {
-    return Math.random() * nodeRandomDelay;
-  }
+  return Math.random() * nodeRandomDelay;
+}
 
 function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 function drawNet(nnodes, change, ruta) {
@@ -251,49 +251,50 @@ const display = {
 
 btnCNet.onclick = () => {
 
-    redAleatoria = crearRedAleatoriaConCongestion(numNodos, nodeConnect);
+  redAleatoria = crearRedAleatoriaConCongestion(numNodos, nodeConnect);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  var change = false;
+
+  drawNet(redAleatoria, change, redAleatoria);
+  display.estado.style.color = "green";
+  display.estado.innerHTML = "Red generada";
+  display.numeronodos.innerHTML = numNodos+" nodos";
+};
+
+
+btnMinPath.onclick = () => {
   
+  if (display.estado.innerHTML != "Red generada") {
+    display.estado.innerHTML = "La red no está generada. Por favor generar primero la red.";
+    display.estado.style.color = "red";
+  }
+  else {
+
+    nodoOrigen = redAleatoria[0];
+    nodoDestino = redAleatoria[numNodos - 1];
+
+    rutaMinimaConRetardos = dijkstraConRetardos(redAleatoria, nodoOrigen, nodoDestino);
+    console.log("Ruta mínima con retrasos:", rutaMinimaConRetardos);
+    display.cronometro.innerHTML = 0;
+    for (let step = 0; step < rutaMinimaConRetardos.length; step++)
+      display.cronometro.innerHTML = Number(display.cronometro.innerHTML)+Number(rutaMinimaConRetardos[step].delay);
+      display.cronometro.innerHTML = "Tiempo total: "+parseInt(display.cronometro.innerHTML)+" sec";
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-    var change = false;
-  
-    drawNet(redAleatoria, change, redAleatoria);
-    display.estado.style.color = "green";
-    display.estado.innerHTML = "Red generada";
-    display.numeronodos.innerHTML = numNodos+" nodos";
-  };
-  
-  btnMinPath.onclick = () => {
-  
-    if (display.estado.innerHTML != "Red generada") {
-      display.estado.innerHTML = "La red no está generada. Por favor generar primero la red.";
+
+    var change = true;
+    
+    if (rutaMinimaConRetardos.length == 1) {
+      display.estado.innerHTML = "La red generada no tiene ningún camino hasta el nodo destino.";
       display.estado.style.color = "red";
+      drawNet(redAleatoria, change, rutaMinimaConRetardos);
+      display.cronometro.innerHTML = "";
     }
+
     else {
-  
-      nodoOrigen = redAleatoria[0];
-      nodoDestino = redAleatoria[numNodos - 1];
-  
-      rutaMinimaConRetardos = dijkstraConRetardos(redAleatoria, nodoOrigen, nodoDestino);
-      console.log("Ruta mínima con retrasos:", rutaMinimaConRetardos);
-      display.cronometro.innerHTML = 0;
-      for (let step = 0; step < rutaMinimaConRetardos.length; step++)
-        display.cronometro.innerHTML = Number(display.cronometro.innerHTML)+Number(rutaMinimaConRetardos[step].delay);
-        display.cronometro.innerHTML = "Tiempo total: "+parseInt(display.cronometro.innerHTML)+" sec";
-      
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-      var change = true;
-      
-      if (rutaMinimaConRetardos.length == 1) {
-        display.estado.innerHTML = "La red generada no tiene ningún camino hasta el nodo destino.";
-        display.estado.style.color = "red";
-        drawNet(redAleatoria, change, rutaMinimaConRetardos);
-        display.cronometro.innerHTML = "";
-      }
-  
-      else {
-        drawNet(redAleatoria, change, rutaMinimaConRetardos);
-      }
+      drawNet(redAleatoria, change, rutaMinimaConRetardos);
     }
-  };
+  }
+};

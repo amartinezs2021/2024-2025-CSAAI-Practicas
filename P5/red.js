@@ -167,3 +167,6 @@ class Nodo {
   return nodos;
 }
  
+function generarRetardo() {
+    return Math.random() * nodeRandomDelay;
+  }

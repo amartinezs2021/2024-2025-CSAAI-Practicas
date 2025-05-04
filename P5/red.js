@@ -249,3 +249,17 @@ const display = {
     estado : document.getElementById("estado")
 };
 
+btnCNet.onclick = () => {
+
+    redAleatoria = crearRedAleatoriaConCongestion(numNodos, nodeConnect);
+  
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    var change = false;
+  
+    drawNet(redAleatoria, change, redAleatoria);
+    display.estado.style.color = "green";
+    display.estado.innerHTML = "Red generada";
+    display.numeronodos.innerHTML = numNodos+" nodos";
+  };
+  

@@ -263,3 +263,37 @@ btnCNet.onclick = () => {
     display.numeronodos.innerHTML = numNodos+" nodos";
   };
   
+  btnMinPath.onclick = () => {
+  
+    if (display.estado.innerHTML != "Red generada") {
+      display.estado.innerHTML = "La red no está generada. Por favor generar primero la red.";
+      display.estado.style.color = "red";
+    }
+    else {
+  
+      nodoOrigen = redAleatoria[0];
+      nodoDestino = redAleatoria[numNodos - 1];
+  
+      rutaMinimaConRetardos = dijkstraConRetardos(redAleatoria, nodoOrigen, nodoDestino);
+      console.log("Ruta mínima con retrasos:", rutaMinimaConRetardos);
+      display.cronometro.innerHTML = 0;
+      for (let step = 0; step < rutaMinimaConRetardos.length; step++)
+        display.cronometro.innerHTML = Number(display.cronometro.innerHTML)+Number(rutaMinimaConRetardos[step].delay);
+        display.cronometro.innerHTML = "Tiempo total: "+parseInt(display.cronometro.innerHTML)+" sec";
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+      var change = true;
+      
+      if (rutaMinimaConRetardos.length == 1) {
+        display.estado.innerHTML = "La red generada no tiene ningún camino hasta el nodo destino.";
+        display.estado.style.color = "red";
+        drawNet(redAleatoria, change, rutaMinimaConRetardos);
+        display.cronometro.innerHTML = "";
+      }
+  
+      else {
+        drawNet(redAleatoria, change, rutaMinimaConRetardos);
+      }
+    }
+  };

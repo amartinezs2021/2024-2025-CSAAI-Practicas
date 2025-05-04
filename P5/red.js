@@ -37,7 +37,66 @@ class Nodo {
           isconnected = true;
         }      
       });
-  
+          
       return isconnected;
     }
   
+    node_distance(nx, ny) {
+  
+      var a = nx - this.x;
+      var b = ny - this.y;
+              
+      return Math.floor(Math.sqrt( a*a + b*b ));
+      
+    }
+  
+    far_node( nodos ) {
+  
+      let distn = 0;
+      let cnode = this.id;
+      let distaux = 0;
+      let pos = 0;
+      let npos = 0;
+  
+      for (let nodo of nodos) {
+        distaux = this.node_distance(nodo.x, nodo.y);
+    
+        if (distaux != 0 && distaux > distn) {
+          distn = distaux;
+          cnode = nodo.id;
+          npos = pos;
+        }
+  
+        pos += 1;
+      }
+    
+      return {pos: npos, id: cnode, distance: distn,};
+  
+    }
+  
+    close_node( nodos ) {
+  
+      let far_node = this.far_node( nodos );
+      let cnode = far_node.id;
+      let distn = far_node.distance;
+      let distaux = 0;
+      let pos = 0;
+      let npos = 0;    
+        
+      for (let nodo of nodos) {
+        distaux = this.node_distance(nodo.x, nodo.y);
+        
+        if (distaux != 0 && distaux <= distn) {
+          distn = distaux;
+          cnode = nodo.id;
+          npos = pos;
+        }
+      
+        pos += 1;
+      }
+        
+      return {pos:npos, id: cnode, distance: distn,};
+        
+    }
+  
+  }

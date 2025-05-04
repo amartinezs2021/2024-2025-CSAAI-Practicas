@@ -170,3 +170,7 @@ class Nodo {
 function generarRetardo() {
     return Math.random() * nodeRandomDelay;
   }
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}

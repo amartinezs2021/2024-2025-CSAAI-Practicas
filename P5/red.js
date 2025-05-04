@@ -174,3 +174,78 @@ function generarRetardo() {
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
+
+function drawNet(nnodes, change, ruta) {
+
+    nnodes.forEach(nodo => {
+      nodo.conexiones.forEach(({ nodo: conexion, peso }) => {
+        ctx.beginPath();
+        ctx.moveTo(nodo.x, nodo.y);
+        ctx.lineTo(conexion.x, conexion.y);
+        ctx.stroke();
+  
+        ctx.font = '12px Arial';
+        ctx.fillStyle = 'black';
+        ctx.textAlign = 'center';
+        pw = "N" + nodo.id + " pw " + peso;
+        const midX = Math.floor((nodo.x + conexion.x)/2);
+        const midY = Math.floor((nodo.y + conexion.y)/2);
+        ctx.fillText(pw, midX, midY);  
+  
+      });
+    });
+  
+    let nodoDesc;
+    let lista = [];
+
+    if (change == false) {
+    nnodes.forEach(nodo => {
+      ctx.beginPath();
+      ctx.arc(nodo.x, nodo.y, nodeRadius, 0, 2 * Math.PI);
+      ctx.fillStyle = "#1489b8";
+      ctx.fill();
+      ctx.stroke();
+      ctx.font = '12px Arial';
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      nodoDesc = "N" + nodo.id + " delay " + Math.floor(nodo.delay);
+      ctx.fillText(nodoDesc, nodo.x, nodo.y + 5);
+    });
+    }
+    else {
+      ruta.forEach(nodo => {
+        lista.push(nodo.id);
+        ctx.beginPath();
+        ctx.arc(nodo.x, nodo.y, nodeRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.stroke();
+        ctx.font = '12px Arial';
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        nodoDesc = "N" + nodo.id + " delay " + Math.floor(nodo.delay);
+        ctx.fillText(nodoDesc, nodo.x, nodo.y + 5);
+      });
+
+      for (let step = 0; step < 5; step++)
+        if (lista.includes(step) == false) {
+          ctx.beginPath();
+          ctx.arc(nnodes[step].x, nnodes[step].y, nodeRadius, 0, 2 * Math.PI);
+          ctx.fillStyle = "#1489b8";
+          ctx.fill();
+          ctx.stroke();
+          ctx.font = '12px Arial';
+          ctx.fillStyle = 'white';
+          ctx.textAlign = 'center';
+          nodoDesc = "N" + nnodes[step].id + " delay " + Math.floor(nnodes[step].delay);
+          ctx.fillText(nodoDesc, nnodes[step].x, nnodes[step].y + 5);
+        }
+    }
+}
+
+const display = {
+    numeronodos : document.getElementById("nodos"),
+    cronometro : document.getElementById("crono"),
+    estado : document.getElementById("estado")
+};
+

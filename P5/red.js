@@ -100,3 +100,70 @@ class Nodo {
     }
   
   }
+
+  function crearRedAleatoriaConCongestion(numNodos, numConexiones) {
+  
+    const nodos = [];
+    let x = 0, y = 0, delay = 0;
+    let nodoActual = 0, nodoAleatorio = 0, pickNode = 0, peso = 0;
+    let bSpace = false;
+  
+    const xs = Math.floor(canvas.width / numNodos);
+    const ys = Math.floor(canvas.height / 2 );
+    const xr = canvas.width - nodeRadius;
+    const yr = canvas.height - nodeRadius;
+    let xp = nodeRadius;
+    let yp = nodeRadius;
+    let xsa = xs;
+    let ysa = ys;
+
+    for (let i = 0; i < numNodos; i++) {
+
+      if (Math.random() < 0.5) {
+        yp = nodeRadius;
+        ysa = ys;
+      } 
+      else {
+        yp = ys;
+        ysa = yr;
+      }
+  
+      x = randomNumber(xp, xsa);
+      y = randomNumber(yp, ysa);
+  
+      xp = xsa;
+      xsa = xsa + xs;
+  
+      if ( xsa > xr && xsa <= canvas.width ) {
+        xsa = xr;
+      }
+  
+      if ( xsa > xr && xsa < canvas.width ) {
+        xp = nodeRadius;
+        xsa = xs;
+      }    
+  
+      delay = generarRetardo();
+      nodos.push(new Nodo(i, x, y, delay));
+    }
+
+    for (let nodo of nodos) {
+ 
+     const clonedArray = [...nodos];
+ 
+     for (let j = 0; j < numConexiones; j++) {
+       let close_node = nodo.close_node(clonedArray);
+ 
+       if (!nodo.isconnected(close_node.id) && !clonedArray[close_node.pos].isconnected(nodo.id)) {
+
+        nodo.conectar(clonedArray[close_node.pos], close_node.distance);
+       }
+     
+       clonedArray.splice(close_node.pos, 1);
+     }
+ 
+   }
+
+  return nodos;
+}
+ 

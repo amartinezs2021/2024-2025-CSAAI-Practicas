@@ -14,3 +14,30 @@ const pipeRandomWeight = 100;
 const btnCNet = document.getElementById("btnCNet");
 const btnMinPath = document.getElementById("btnMinPath");
 
+class Nodo {
+
+    constructor(id, x, y, delay) {
+      this.id = id;
+      this.x = x;
+      this.y = y;
+      this.delay = delay;
+      this.conexiones = [];
+    }
+    
+    conectar(nodo, peso) {
+      this.conexiones.push({ nodo, peso });
+    }
+  
+    isconnected(idn) {
+  
+      let isconnected = false;
+    
+      this.conexiones.forEach(({ nodo: conexion, peso }) => {      
+        if (idn == conexion.id) {
+          isconnected = true;
+        }      
+      });
+  
+      return isconnected;
+    }
+  
